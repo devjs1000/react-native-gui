@@ -1,5 +1,6 @@
-export const renderInput = ({ attributes }: InputProps) => {
-  return `<Input
+export const renderInput = ({ attributes, isWeb = false }: InputProps) => {
+  const finalVariant = isWeb ? "input" : "Input";
+  return `<${finalVariant}
         ${
           attributes
             ? Object.keys(attributes)
@@ -18,10 +19,11 @@ export const renderInput = ({ attributes }: InputProps) => {
 
 interface InputProps {
   attributes?: {
-    style: {
+    style?: {
       [key: string]: string;
     };
-    placeholder: string;
+    placeholder?: string;
     [key: string]: any;
   };
+  isWeb?: boolean;
 }

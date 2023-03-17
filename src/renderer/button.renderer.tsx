@@ -2,8 +2,10 @@ export const renderButton = ({
   children,
   attributes,
   variant = "Pressable",
+  isWeb = false,
 }: ButtonProps) => {
-  return `<${variant}
+  const finalVariant = isWeb ? "Button" : variant;
+  return `<${finalVariant}
       ${
         attributes
           ? Object.keys(attributes)
@@ -19,18 +21,19 @@ export const renderButton = ({
       }
     >
       ${children || ""} 
-      </${variant}>`;
+      </${finalVariant}>`;
 };
 
 interface ButtonProps {
-  children: any;
+  children?: any;
+  isWeb?: boolean;
   attributes?: {
-    style: {
+    style?: {
       [key: string]: string;
     };
     [key: string]: any;
   };
-  variant:
+  variant?:
     | "Pressable"
     | "TouchableOpacity"
     | "TouchableHighlight"

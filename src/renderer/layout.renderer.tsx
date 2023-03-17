@@ -1,6 +1,10 @@
-
-export const renderLayout = ({ children, attributes }: LayoutProps) => {
-  return `<View
+export const renderLayout = ({
+  children,
+  attributes,
+  isWeb = false,
+}: LayoutProps) => {
+  const finalVariant = isWeb ? "div" : "View";
+  return `<${finalVariant}
     ${
       attributes
         ? Object.keys(attributes)
@@ -16,15 +20,16 @@ export const renderLayout = ({ children, attributes }: LayoutProps) => {
     }
   >
     ${children || ""} 
-    </View>`;
+    </${finalVariant}>`;
 };
 
 interface LayoutProps {
-  children: any;
+  children?: any;
   attributes?: {
-    style: {
+    style?: {
       [key: string]: string;
     };
     [key: string]: any;
   };
+  isWeb?: boolean;
 }

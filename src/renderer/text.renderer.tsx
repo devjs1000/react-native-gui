@@ -1,5 +1,11 @@
-export const renderText = ({ children, attributes }: TextProps) => {
-  return `<Text
+export const renderText = ({
+  children,
+  attributes,
+  variant,
+  isWeb = false,
+}: TextProps) => {
+  const finalVariant = isWeb ? "p" : variant || "Text";
+  return `<${finalVariant}
         ${
           attributes
             ? Object.keys(attributes)
@@ -15,15 +21,17 @@ export const renderText = ({ children, attributes }: TextProps) => {
         }
     >
         ${children || ""} 
-        </Text>`;
+        </${finalVariant}>`;
 };
 
 interface TextProps {
-  children: any;
+  children?: any;
   attributes?: {
     style: {
       [key: string]: string;
     };
     [key: string]: any;
   };
+  variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+  isWeb?: boolean;
 }

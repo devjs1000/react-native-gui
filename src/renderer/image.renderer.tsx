@@ -1,5 +1,6 @@
-export const renderImage = ({ attributes }: ImageProps) => {
-  return `<Image
+export const renderImage = ({ attributes, isWeb = false }: ImageProps) => {
+  const finalVariant = isWeb ? "img" : "Image";
+  return `<${finalVariant}
       ${
         attributes
           ? Object.keys(attributes)
@@ -18,12 +19,14 @@ export const renderImage = ({ attributes }: ImageProps) => {
 
 interface ImageProps {
   attributes?: {
-    style: {
+    style?: {
       [key: string]: string;
     };
-    source: {
+    source?: {
       uri: string;
     };
+    src?: string;
     [key: string]: any;
   };
+  isWeb?: boolean;
 }
