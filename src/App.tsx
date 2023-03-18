@@ -37,7 +37,10 @@ function App() {
     setUi(tempUI);
   };
 
-  console.log(ui);
+  const handleRemoveFocus=()=>{
+    setFocusElement(null)
+  }
+
   return (
     <main className="flex w-screen h-screen bg-white">
       <section className="flex-grow-[3]">
@@ -62,7 +65,7 @@ function App() {
         })}
       </section>
 
-      <EditBar handleEdit={handleEdit} focusElementRef={focusElement} />
+      <EditBar removeFocus={handleRemoveFocus} handleEdit={handleEdit} focusElementRef={focusElement} />
     </main>
   );
 }
