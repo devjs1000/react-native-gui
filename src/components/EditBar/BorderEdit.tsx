@@ -14,16 +14,41 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
     });
   };
 
-  const handleColorChange = (name: string) => (e: any) => {
+  const handleValueChange = (name: string) => (e: any) => {
     const { value } = e.target;
     handleBorderEdit({
       name,
       value,
     });
   };
+
+  const handleAllChange =
+    (names: string[], keyMode = true) =>
+    (e: any) => {
+      if (keyMode) {
+        const key = e.key;
+        if (key !== "Enter") return;
+      }
+      const { value } = e.target;
+      names.forEach((name) => {
+        handleBorderEdit({
+          name,
+          value,
+        });
+      });
+    };
   return (
     <div className="bg-gray-50  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
-      <Container title={"BORDER WIDTH"}>
+      <Container
+        title={"BORDER WIDTH"}
+        all={true}
+        handleAllChange={handleAllChange([
+          "borderTopWidth",
+          "borderBottomWidth",
+          "borderLeftWidth",
+          "borderRightWidth",
+        ])}
+      >
         <Input
           onKeyPress={handleChange("borderTopWidth")}
           type="text"
@@ -53,63 +78,99 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           className={"p-0  w-auto border-none bg-transparent h-[50px]"}
         />
       </Container>
-      <Container title={"BORDER COLOR"}>
+      <Container
+        title={"BORDER COLOR"}
+        all={true}
+        handleAllChange={handleAllChange(
+          [
+            "borderTopColor",
+            "borderBottomColor",
+            "borderLeftColor",
+            "borderRightColor",
+          ],
+          false
+        )}
+        elType="color"
+      >
         <Input
-          onChange={handleColorChange("borderTopColor")}
+          onChange={handleValueChange("borderTopColor")}
           type="color"
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
         />
         <Input
-          onChange={handleColorChange("borderBottomColor")}
+          onChange={handleValueChange("borderBottomColor")}
           type="color"
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
         />
         <Input
-          onChange={handleColorChange("borderLeftColor")}
+          onChange={handleValueChange("borderLeftColor")}
           type="color"
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
         />
         <Input
-          onChange={handleColorChange("borderRightColor")}
+          onChange={handleValueChange("borderRightColor")}
           type="color"
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
         />
       </Container>
-      <Container title={"BORDER STYLE"}>
+      <Container
+        title={"BORDER STYLE"}
+        all={true}
+        data={borderStyles}
+        elType="select"
+        handleAllChange={handleAllChange(
+          [
+            "borderTopStyle",
+            "borderBottomStyle",
+            "borderLeftStyle",
+            "borderRightStyle",
+          ],
+          false
+        )}
+      >
         <Select
           data={borderStyles}
-          onChange={handleColorChange("borderTopStyle")}
+          onChange={handleValueChange("borderTopStyle")}
           label={"top"}
           placeholder={"solid"}
         />
         <Select
           data={borderStyles}
-          onChange={handleColorChange("borderBottomStyle")}
+          onChange={handleValueChange("borderBottomStyle")}
           label={"bottom"}
           placeholder={"solid"}
         />
         <Select
           data={borderStyles}
-          onChange={handleColorChange("borderLeftStyle")}
+          onChange={handleValueChange("borderLeftStyle")}
           label={"left"}
           placeholder={"solid"}
         />
         <Select
           data={borderStyles}
-          onChange={handleColorChange("borderRightStyle")}
+          onChange={handleValueChange("borderRightStyle")}
           label={"right"}
           placeholder={"solid"}
         />
       </Container>
-      <Container title={"BORDER RADIUS"}>
+      <Container
+        title={"BORDER RADIUS"}
+        all={true}
+        handleAllChange={handleAllChange([
+          "borderTopLeftRadius",
+          "borderTopRightRadius",
+          "borderBottomLeftRadius",
+          "borderBottomRightRadius",
+        ])}
+      >
         <Input
           onKeyPress={handleChange("borderTopLeftRadius")}
           type="text"
