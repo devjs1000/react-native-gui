@@ -13,7 +13,7 @@ const LayoutEdit = ({ handleLayoutEdit }: LayoutEditProps) => {
     });
   };
   return (
-    <div className="bg-gray-900 rounded-b-lg text-gray-200 p-2 border-t-[2px] border-white">
+    <div className="bg-gray-50  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
       <Container title={"MARGIN"}>
         <Input
           onKeyPress={handleChange("marginTop")}

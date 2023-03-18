@@ -42,7 +42,7 @@ function App() {
   }
 
   return (
-    <main className="flex w-screen h-screen bg-white">
+    <main className="flex w-screen h-screen overflow-hidden bg-gray-100">
       <section className="flex-grow-[3]">
         {ui.map((item: any, index: number) => {
           const Creator: any = getCreator(item.type);

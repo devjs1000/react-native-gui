@@ -20,7 +20,7 @@ const TextEdit = ({ handleTextEdit }: TextEditProps) => {
     });
   };
   return (
-    <div className="bg-gray-900 rounded-b-lg text-gray-200 p-2 border-t-[2px] border-white">
+    <div className="bg-gray-50  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
       <Container title={"TEXT"}>
         <Input
           onKeyPress={handleChange("fontSize")}
@@ -63,7 +63,7 @@ export const Select = ({
 }: SelectProps) => {
   const id = useId();
   return (
-    <div className="flex flex-col w-">
+    <div className="flex flex-col pb-2">
       <label
         className="bg-gray-700 select-none rounded-md mb-1 px-2 font-bold text-center"
         htmlFor={id}
