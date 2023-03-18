@@ -1,6 +1,7 @@
-import React, { ChangeEvent, ChangeEventHandler, useId } from "react";
+import React, { ChangeEvent, ChangeEventHandler } from "react";
 import { Container } from "./Container";
 import { Input } from "./Input";
+import { Select } from "./Select";
 
 const TextEdit = ({ handleTextEdit }: TextEditProps) => {
   const handleChange = (name: string) => (e: any) => {
@@ -54,41 +55,6 @@ export default TextEdit;
 interface TextEditProps {
   handleTextEdit: any;
 }
-export const Select = ({
-  label,
-  placeholder,
-  className,
-  data,
-  ...rest
-}: SelectProps) => {
-  const id = useId();
-  return (
-    <div className="flex flex-col pb-2">
-      <label
-        className="bg-gray-700 select-none rounded-md mb-1 px-2 font-bold text-center"
-        htmlFor={id}
-      >
-        {label?.toUpperCase()}
-      </label>
-      <select
-        className={`p-2 w-full flex-grow-[1] text-gray-900 rounded-md ${className}`}
-        id={id}
-        placeholder={placeholder}
-        {...rest}
-      >
-        {data.map((val: any) => {
-          return <option value={val?.value}>{val?.label}</option>;
-        })}
-      </select>
-    </div>
-  );
-};
-interface SelectProps {
-  data: { label: string; value: string }[];
-  label: string;
-  placeholder: string;
-  [key: string]: any;
-}
 
 const fontFamilies = [
   {
@@ -102,5 +68,5 @@ const fontFamilies = [
   {
     label: "verdana",
     value: "verdana",
-  }
+  },
 ];
