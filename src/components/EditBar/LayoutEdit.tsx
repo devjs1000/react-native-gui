@@ -1,23 +1,84 @@
-import React, { useId } from "react";
+import React, { ChangeEvent, ChangeEventHandler } from "react";
+import { Container } from "./Container";
+import { Input } from "./Input";
 
-const LayoutEdit = () => {
+const LayoutEdit = ({ handleLayoutEdit }: LayoutEditProps) => {
+  const handleChange = (name: string) => (e: any) => {
+    const key = e.key;
+    if (key !== "Enter") return;
+    const { value } = e.target;
+    handleLayoutEdit({
+      name,
+      value,
+    });
+  };
   return (
-    <div className="bg-gray-900 rounded-lg text-gray-200 p-2 border-t-[2px] border-white">
+    <div className="bg-gray-900 rounded-b-lg text-gray-200 p-2 border-t-[2px] border-white">
       <Container title={"MARGIN"}>
-        <Input type="number" label="top" placeholder="14" />
-        <Input type="number" label="bottom" placeholder="14" />
-        <Input type="number" label="left" placeholder="14" />
-        <Input type="number" label="right" placeholder="14" />
+        <Input
+          onKeyPress={handleChange("marginTop")}
+          type="text"
+          label="top"
+          placeholder="14"
+        />
+        <Input
+          onKeyPress={handleChange("marginBottom")}
+          type="text"
+          label="bottom"
+          placeholder="14"
+        />
+        <Input
+          onKeyPress={handleChange("marginLeft")}
+          type="text"
+          label="left"
+          placeholder="14"
+        />
+        <Input
+          onKeyPress={handleChange("marginRight")}
+          type="text"
+          label="right"
+          placeholder="14"
+        />
       </Container>
       <Container title={"PADDING"}>
-        <Input type="number" label="top" placeholder="14" />
-        <Input type="number" label="bottom" placeholder="14" />
-        <Input type="number" label="left" placeholder="14" />
-        <Input type="number" label="right" placeholder="14" />
+        <Input
+          onKeyPress={handleChange("paddingTop")}
+          type="text"
+          label="top"
+          placeholder="14"
+        />
+        <Input
+          onKeyPress={handleChange("paddingBottom")}
+          type="text"
+          label="bottom"
+          placeholder="14"
+        />
+        <Input
+          onKeyPress={handleChange("paddingLeft")}
+          type="text"
+          label="left"
+          placeholder="14"
+        />
+        <Input
+          onKeyPress={handleChange("paddingRight")}
+          type="text"
+          label="right"
+          placeholder="14"
+        />
       </Container>
       <Container title={"DIMENSIONS"}>
-        <Input type="number" label="width" placeholder="14" />
-        <Input type="number" label="height" placeholder="14" />
+        <Input
+          onKeyPress={handleChange("width")}
+          type="text"
+          label="width"
+          placeholder="14"
+        />
+        <Input
+          onKeyPress={handleChange("height")}
+          type="text"
+          label="height"
+          placeholder="14"
+        />
       </Container>
     </div>
   );
@@ -25,39 +86,6 @@ const LayoutEdit = () => {
 
 export default LayoutEdit;
 
-const Input = ({ label, placeholder, ...rest }: InputProps) => {
-  const id = useId();
-  return (
-    <div className="flex flex-col w-[100px]">
-      <label className="bg-gray-700 select-none rounded-md mb-1 font-bold text-center" htmlFor={id}>
-        {label?.toUpperCase()}
-      </label>
-      <input
-        className="p-2 text-gray-900 rounded-md"
-        id={id}
-        placeholder={placeholder}
-        {...rest}
-      />
-    </div>
-  );
-};
-
-interface InputProps {
-  label: string;
-  placeholder: string;
-  [key: string]: any;
-}
-
-const Container = ({ title, children }: ContainerProps) => {
-  return (
-    <div className="bg-gray-800 py-4 rounded-md">
-      <h1 className="text-xl my-2 text-center bg-gray-800">{title}</h1>
-      <div className="flex flex-wrap justify-around gap-4">{children}</div>
-    </div>
-  );
-};
-
-interface ContainerProps {
-  children: React.ReactNode;
-  title: string;
+interface LayoutEditProps {
+  handleLayoutEdit: any;
 }
