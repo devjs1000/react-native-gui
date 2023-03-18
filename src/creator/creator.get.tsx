@@ -1,4 +1,4 @@
-import LayoutCreator from "./layout.creator";
+import LayoutCreator from "./Layout.creator";
 
 export const getCreator = (name: string) => {
   switch (name) {
