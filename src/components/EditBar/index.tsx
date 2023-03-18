@@ -3,6 +3,7 @@ import LayoutEdit from "./LayoutEdit";
 import ColorEdit from "./ColorEdit";
 import { FaTimes } from "react-icons/fa";
 import RadiusEdit from "./RadiusEdit";
+import TextEdit from "./TextEdit";
 const EditBar = ({
   focusElementRef = null,
   handleEdit,
@@ -23,6 +24,7 @@ const EditBar = ({
         <LayoutEdit handleLayoutEdit={handleEdit} />
         <ColorEdit handleColorEdit={handleEdit} />
         <RadiusEdit handleRadiusEdit={handleEdit} />
+        <TextEdit handleTextEdit={handleEdit} />
       </div>
     </aside>
   );

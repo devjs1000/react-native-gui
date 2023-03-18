@@ -19,25 +19,25 @@ const LayoutEdit = ({ handleLayoutEdit }: LayoutEditProps) => {
           onKeyPress={handleChange("marginTop")}
           type="text"
           label="top"
-          placeholder="14"
+          placeholder="0"
         />
         <Input
           onKeyPress={handleChange("marginBottom")}
           type="text"
           label="bottom"
-          placeholder="14"
+          placeholder="0"
         />
         <Input
           onKeyPress={handleChange("marginLeft")}
           type="text"
           label="left"
-          placeholder="14"
+          placeholder="0"
         />
         <Input
           onKeyPress={handleChange("marginRight")}
           type="text"
           label="right"
-          placeholder="14"
+          placeholder="0"
         />
       </Container>
       <Container title={"PADDING"}>
@@ -45,25 +45,25 @@ const LayoutEdit = ({ handleLayoutEdit }: LayoutEditProps) => {
           onKeyPress={handleChange("paddingTop")}
           type="text"
           label="top"
-          placeholder="14"
+          placeholder="0"
         />
         <Input
           onKeyPress={handleChange("paddingBottom")}
           type="text"
           label="bottom"
-          placeholder="14"
+          placeholder="0"
         />
         <Input
           onKeyPress={handleChange("paddingLeft")}
           type="text"
           label="left"
-          placeholder="14"
+          placeholder="0"
         />
         <Input
           onKeyPress={handleChange("paddingRight")}
           type="text"
           label="right"
-          placeholder="14"
+          placeholder="0"
         />
       </Container>
       <Container title={"DIMENSIONS"}>
@@ -71,13 +71,13 @@ const LayoutEdit = ({ handleLayoutEdit }: LayoutEditProps) => {
           onKeyPress={handleChange("width")}
           type="text"
           label="width"
-          placeholder="14"
+          placeholder="100%"
         />
         <Input
           onKeyPress={handleChange("height")}
           type="text"
           label="height"
-          placeholder="14"
+          placeholder="200px"
         />
       </Container>
     </div>
