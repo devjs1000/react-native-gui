@@ -2,6 +2,7 @@ import React from "react";
 import LayoutEdit from "./LayoutEdit";
 import ColorEdit from "./ColorEdit";
 import { FaTimes } from "react-icons/fa";
+import RadiusEdit from "./RadiusEdit";
 const EditBar = ({
   focusElementRef = null,
   handleEdit,
@@ -21,6 +22,7 @@ const EditBar = ({
       <div className=" h-full overflow-auto">
         <LayoutEdit handleLayoutEdit={handleEdit} />
         <ColorEdit handleColorEdit={handleEdit} />
+        <RadiusEdit handleRadiusEdit={handleEdit} />
       </div>
     </aside>
   );
