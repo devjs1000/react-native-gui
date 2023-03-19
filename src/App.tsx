@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { getCreator } from "./creator/creator.get";
 import EditBar from "./components/EditBar";
 function App() {
@@ -14,33 +14,42 @@ function App() {
 
   type focusElementType = React.RefObject<any> | null;
   const [focusElement, setFocusElement] = useState<focusElementType>(null);
-  const handlefocus = (ref: React.RefObject<any>, name: string) => () => {
-    ref.current.name = name;
-    setFocusElement(ref);
-  };
-  const handleEdit = ({ name, value }: { [key: string]: any }) => {
-    // console.log('handle Edit')
-    const id: string = focusElement?.current?.id;
-    // console.log(focusElement?.current)
-    const tempUI = ui.map((uiEl: any) => {
-      const uiElId = uiEl?.id;
-      // console.log({id, uiElId})
-      if (uiElId == id) {
-        if (!uiEl.attributes) uiEl.attributes = {};
-        if (!uiEl.attributes.style) uiEl.attributes.style = {};
-        uiEl.attributes.style[name] = value;
+  const handlefocus = useCallback(
+    (ref: React.RefObject<any>, name: string) => () => {
+      ref.current.name = name;
+      setFocusElement(ref);
+    },
+    []
+  );
+
+  const handleEdit = useCallback(
+    ({ name, value }: { [key: string]: any }) => {
+      const id: string = focusElement?.current?.id;
+      const tempUI = ui.map((uiEl: any) => {
+        const uiElId = uiEl?.id;
+        if (uiElId == id) {
+          if (!uiEl.attributes) uiEl.attributes = {};
+          if (!uiEl.attributes.style) uiEl.attributes.style = {};
+          uiEl.attributes.style[name] = value;
+          return uiEl;
+        }
         return uiEl;
-      }
-      return uiEl;
-    });
+      });
 
-    setUi(tempUI);
-  };
+      setUi(tempUI);
+    },
+    [ui, focusElement]
+  );
 
-  const handleRemoveFocus=()=>{
-    setFocusElement(null)
-  }
+  const handleRemoveFocus = useCallback(() => {
+    setFocusElement(null);
+  }, []);
 
+  const activeUi = useMemo(() => {
+    return ui.find((el: any) => el.id == focusElement?.current?.id) || null;
+  }, [focusElement, ui]);
+
+  console.log({ activeUi });
   return (
     <main className="flex w-screen h-screen overflow-hidden bg-gray-100">
       <section className="flex-grow-[3]">
@@ -65,7 +74,12 @@ function App() {
         })}
       </section>
 
-      <EditBar removeFocus={handleRemoveFocus} handleEdit={handleEdit} focusElementRef={focusElement} />
+      <EditBar
+        activeUi={activeUi}
+        removeFocus={handleRemoveFocus}
+        handleEdit={handleEdit}
+        focusElementRef={focusElement}
+      />
     </main>
   );
 }

@@ -2,8 +2,9 @@ import React, { ChangeEvent, ChangeEventHandler } from "react";
 import { Container } from "./Container";
 import { Input } from "./Input";
 import { Select } from "./Select";
+import { fontFamilies } from "../../constants/fontFamilies";
 
-const TextEdit = ({ handleTextEdit }: TextEditProps) => {
+const TextEdit = ({ handleTextEdit, styles }: TextEditProps) => {
   const handleChange = (name: string) => (e: any) => {
     const key = e.key;
     if (key !== "Enter") return;
@@ -29,6 +30,7 @@ const TextEdit = ({ handleTextEdit }: TextEditProps) => {
           label="font size"
           className={""}
           placeholder="14"
+          value={styles?.fontSize}
         />
         <Input
           onKeyPress={handleChange("fontWeight")}
@@ -36,6 +38,7 @@ const TextEdit = ({ handleTextEdit }: TextEditProps) => {
           label="font weight"
           className={"w-[130px] flex-grow-[1]"}
           placeholder="14"
+          value={styles?.fontWeight}
         />
         <Select
           data={fontFamilies}
@@ -44,6 +47,7 @@ const TextEdit = ({ handleTextEdit }: TextEditProps) => {
           label="font family"
           className={"w-full"}
           placeholder="14"
+          value={styles?.fontFamily}
         />
       </Container>
     </div>
@@ -54,19 +58,5 @@ export default TextEdit;
 
 interface TextEditProps {
   handleTextEdit: any;
+  styles: any;
 }
-
-const fontFamilies = [
-  {
-    label: "monospace",
-    value: "monospace",
-  },
-  {
-    label: "arial",
-    value: "arial",
-  },
-  {
-    label: "verdana",
-    value: "verdana",
-  },
-];

@@ -2,8 +2,9 @@ import React, { ChangeEvent, ChangeEventHandler } from "react";
 import { Container } from "./Container";
 import { Input } from "./Input";
 import { Select } from "./Select";
+import { borderStyles } from "../../constants/borderStyles";
 
-const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
+const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
   const handleChange = (name: string) => (e: any) => {
     const key = e.key;
     if (key !== "Enter") return;
@@ -55,6 +56,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="top"
           placeholder="14"
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
+          defaultValue={styles?.borderTopWidth}
         />
         <Input
           onKeyPress={handleChange("borderBottomWidth")}
@@ -62,6 +64,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="bottom"
           placeholder="14"
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
+          defaultValue={styles?.borderBottomWidth}
         />
         <Input
           onKeyPress={handleChange("borderLeftWidth")}
@@ -69,6 +72,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="left"
           placeholder="14"
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
+          defaultValue={styles?.borderLeftWidth}
         />
         <Input
           onKeyPress={handleChange("borderRightWidth")}
@@ -76,6 +80,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="right"
           placeholder="14"
           className={"p-0  w-auto border-none bg-transparent h-[50px]"}
+          defaultValue={styles?.borderRightWidth}
         />
       </Container>
       <Container
@@ -98,6 +103,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
+          defaultValue={styles?.borderTopColor}
         />
         <Input
           onChange={handleValueChange("borderBottomColor")}
@@ -105,6 +111,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
+          defaultValue={styles?.borderBottomColor}
         />
         <Input
           onChange={handleValueChange("borderLeftColor")}
@@ -112,6 +119,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
+          defaultValue={styles?.borderLeftColor}
         />
         <Input
           onChange={handleValueChange("borderRightColor")}
@@ -119,6 +127,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
+          defaultValue={styles?.borderRightColor}
         />
       </Container>
       <Container
@@ -141,24 +150,28 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           onChange={handleValueChange("borderTopStyle")}
           label={"top"}
           placeholder={"solid"}
+          defaultValue={styles?.borderTopStyle}
         />
         <Select
           data={borderStyles}
           onChange={handleValueChange("borderBottomStyle")}
           label={"bottom"}
           placeholder={"solid"}
+          defaultValue={styles?.borderBottomStyle}
         />
         <Select
           data={borderStyles}
           onChange={handleValueChange("borderLeftStyle")}
           label={"left"}
           placeholder={"solid"}
+          defaultValue={styles?.borderLeftStyle}
         />
         <Select
           data={borderStyles}
           onChange={handleValueChange("borderRightStyle")}
           label={"right"}
           placeholder={"solid"}
+          defaultValue={styles?.borderRightStyle}
         />
       </Container>
       <Container
@@ -177,6 +190,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="top left"
           placeholder="14"
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
+          defaultValue={styles?.borderTopLeftRadius}
         />
         <Input
           onKeyPress={handleChange("borderTopRightRadius")}
@@ -184,6 +198,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="top right"
           placeholder="14"
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
+          defaultValue={styles?.borderTopRightRadius}
         />
         <Input
           onKeyPress={handleChange("borderBottomLeftRadius")}
@@ -191,6 +206,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="bottom left"
           placeholder="14"
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
+          defaultValue={styles?.borderBottomLeftRadius}
         />
         <Input
           onKeyPress={handleChange("borderBottomRightRadius")}
@@ -198,6 +214,7 @@ const BorderEdit = ({ handleBorderEdit }: BorderEditProps) => {
           label="bottom right"
           placeholder="14"
           className={"p-0  w-auto border-none bg-transparent h-[50px]"}
+          defaultValue={styles?.borderBottomRightRadius}
         />
       </Container>
     </div>
@@ -208,47 +225,7 @@ export default BorderEdit;
 
 interface BorderEditProps {
   handleBorderEdit: any;
+  styles: any;
 }
 
-const borderStyles = [
-  {
-    value: "solid",
-    label: "solid",
-  },
-  {
-    value: "dashed",
-    label: "dashed",
-  },
-  {
-    value: "dotted",
-    label: "dotted",
-  },
-  {
-    value: "double",
-    label: "double",
-  },
-  {
-    value: "groove",
-    label: "groove",
-  },
-  {
-    value: "ridge",
-    label: "ridge",
-  },
-  {
-    value: "inset",
-    label: "inset",
-  },
-  {
-    value: "outset",
-    label: "outset",
-  },
-  {
-    value: "none",
-    label: "none",
-  },
-  {
-    value: "hidden",
-    label: "hidden",
-  },
-];
+

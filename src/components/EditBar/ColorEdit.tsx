@@ -2,7 +2,7 @@ import React, { ChangeEvent, ChangeEventHandler } from "react";
 import { Container } from "./Container";
 import { Input } from "./Input";
 
-const ColorEdit = ({ handleColorEdit }: ColorEditProps) => {
+const ColorEdit = ({ handleColorEdit, styles }: ColorEditProps) => {
   const handleChange = (name: string) => (e: any) => {
     const { value } = e.target;
     handleColorEdit({
@@ -19,6 +19,7 @@ const ColorEdit = ({ handleColorEdit }: ColorEditProps) => {
           label="text"
           placeholder="14"
           className={"bg-gray-600 border-none"}
+          value={styles?.color}
         />
         <Input
           onChange={handleChange("backgroundColor")}
@@ -26,6 +27,7 @@ const ColorEdit = ({ handleColorEdit }: ColorEditProps) => {
           label="background"
           placeholder="14"
           className={"bg-gray-600 border-none"}
+          value={styles?.backgroundColor}
         />
       </Container>
     </div>
@@ -36,4 +38,5 @@ export default ColorEdit;
 
 interface ColorEditProps {
   handleColorEdit: any;
+  styles: any;
 }

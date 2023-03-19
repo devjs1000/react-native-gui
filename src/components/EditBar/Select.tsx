@@ -18,8 +18,8 @@ export const Select = ({
         placeholder={placeholder}
         {...rest}
       >
-        {data.map((val: any) => {
-          return <option value={val?.value}>{val?.label}</option>;
+        {data.map((val: any, key:number) => {
+          return <option value={val?.value} key={key} >{val?.label}</option>;
         })}
       </select>
     </div>

@@ -8,9 +8,11 @@ const EditBar = ({
   focusElementRef = null,
   handleEdit,
   removeFocus,
+  activeUi,
 }: EditBarProps) => {
   const hasFocus = focusElementRef;
   if (!hasFocus) return null;
+  const { attributes } = activeUi;
   return (
     <aside className="flex-grow-[1] p-2 shadow-xl h-[100vh] bg-white max-w-[300px]">
       <p className="text-white flex justify-between px-4  bg-gray-800 py-2 text-center sticky top-0">
@@ -21,10 +23,10 @@ const EditBar = ({
         />
       </p>
       <div className=" h-full overflow-auto">
-        <LayoutEdit handleLayoutEdit={handleEdit} />
-        <ColorEdit handleColorEdit={handleEdit} />
-        <TextEdit handleTextEdit={handleEdit} />
-        <BorderEdit handleBorderEdit={handleEdit} />
+        <LayoutEdit styles={attributes?.style} handleLayoutEdit={handleEdit} />
+        <ColorEdit styles={attributes?.style} handleColorEdit={handleEdit} />
+        <TextEdit styles={attributes?.style} handleTextEdit={handleEdit} />
+        <BorderEdit styles={attributes?.style} handleBorderEdit={handleEdit} />
         <div className="h-[100px] w-full bg-white" />
       </div>
     </aside>
@@ -37,4 +39,5 @@ interface EditBarProps {
   focusElementRef?: React.RefObject<any> | null;
   handleEdit: any;
   removeFocus: any;
+  activeUi?: any;
 }
