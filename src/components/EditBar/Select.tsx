@@ -13,7 +13,7 @@ export const Select = ({
         {label?.toUpperCase()}
       </label>
       <select
-        className={`p-2 w-full flex-grow-[1] text-gray-900 rounded-md ${className}`}
+        className={`border-[2px] border-gray-600 p-2 w-full flex-grow-[1] h-[40px] text-gray-900 rounded-md  ${className}`}
         id={id}
         placeholder={placeholder}
         {...rest}

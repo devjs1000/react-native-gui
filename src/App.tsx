@@ -24,17 +24,25 @@ function App() {
   );
 
   const handleEdit = useCallback(
-    ({ name, value }: { [key: string]: any }) => {
+    ({ name, value, editType = "style" }: { [key: string]: any }) => {
       const id: string = focusElement?.current?.id;
       const tempUI = ui.map((uiEl: any) => {
         const uiElId = uiEl?.id;
+        const toReturn: any = JSON.parse(JSON.stringify(uiEl));
         if (uiElId == id) {
-          if (!uiEl.attributes) uiEl.attributes = {};
-          if (!uiEl.attributes.style) uiEl.attributes.style = {};
-          uiEl.attributes.style[name] = value;
-          return uiEl;
+          if (!toReturn.attributes) toReturn.attributes = {};
+          if (editType == "style") {
+            if (!toReturn.attributes.style) toReturn.attributes.style = {};
+            toReturn.attributes.style[name] = value;
+          } else if (editType == "property") {
+            toReturn[name] = value;
+          } else {
+            console.log("else");
+            if (!toReturn.attributes) toReturn.attributes = {};
+            toReturn.attributes[name] = value;
+          }
         }
-        return uiEl;
+        return toReturn;
       });
 
       setUi(tempUI);
@@ -49,33 +57,34 @@ function App() {
   const activeUi = useMemo(() => {
     return ui.find((el: any) => el.id == focusElement?.current?.id) || null;
   }, [focusElement, ui]);
+  console.log(activeUi);
+  const renderUI = (ui: any) => {
+    return (
+      ui.map((item: any, index: number) => {
+        const Creator: any = getCreator(item.type);
 
-  console.log({ activeUi });
+        const attributes = item?.attributes || {};
+        const children = attributes?.children || [];
+        const attrs = JSON.parse(JSON.stringify(attributes));
+        console.log({children});
+        const el = (
+          <Creator
+            key={`${index}`}
+            id={`${index}`}
+            handlefocus={handlefocus}
+            {...attrs}
+            children={children.length ? <div>hello</div> : "empty"}
+          />
+        );
+        return el;
+      }) || ""
+    );
+  };
   return (
     <div>
       <NavBar screenCode={ui} />
       <main className="flex w-screen h-screen overflow-hidden bg-gray-100">
-        <section className="flex-grow-[3]">
-          {ui.map((item: any, index: number) => {
-            const Creator: any = getCreator(item.type);
-            console.log(item?.attributes);
-            const attributes = item?.attributes || null;
-            console.log({ attributes });
-            const astyle = attributes?.style;
-            const style = typeof astyle == "object" ? astyle : {};
-
-            const el = (
-              <Creator
-                key={`${index}`}
-                id={`${index}`}
-                handlefocus={handlefocus}
-                style={JSON.parse(JSON.stringify(style))}
-              />
-            );
-            console.log(el.props, index);
-            return el;
-          })}
-        </section>
+        <section className="flex-grow-[3]">{renderUI(ui)}</section>
 
         <EditBar
           activeUi={activeUi}
