@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { getCreator } from "./creator/creator.get";
 import EditBar from "./components/EditBar";
+import NavBar from "./components/NavBar";
 function App() {
   const [ui, setUi] = React.useState<any>([
     {
@@ -51,36 +52,39 @@ function App() {
 
   console.log({ activeUi });
   return (
-    <main className="flex w-screen h-screen overflow-hidden bg-gray-100">
-      <section className="flex-grow-[3]">
-        {ui.map((item: any, index: number) => {
-          const Creator: any = getCreator(item.type);
-          console.log(item?.attributes);
-          const attributes = item?.attributes || null;
-          console.log({ attributes });
-          const astyle = attributes?.style;
-          const style = typeof astyle == "object" ? astyle : {};
+    <div>
+      <NavBar screenCode={ui} />
+      <main className="flex w-screen h-screen overflow-hidden bg-gray-100">
+        <section className="flex-grow-[3]">
+          {ui.map((item: any, index: number) => {
+            const Creator: any = getCreator(item.type);
+            console.log(item?.attributes);
+            const attributes = item?.attributes || null;
+            console.log({ attributes });
+            const astyle = attributes?.style;
+            const style = typeof astyle == "object" ? astyle : {};
 
-          const el = (
-            <Creator
-              key={`${index}`}
-              id={`${index}`}
-              handlefocus={handlefocus}
-              style={JSON.parse(JSON.stringify(style))}
-            />
-          );
-          console.log(el.props, index);
-          return el;
-        })}
-      </section>
+            const el = (
+              <Creator
+                key={`${index}`}
+                id={`${index}`}
+                handlefocus={handlefocus}
+                style={JSON.parse(JSON.stringify(style))}
+              />
+            );
+            console.log(el.props, index);
+            return el;
+          })}
+        </section>
 
-      <EditBar
-        activeUi={activeUi}
-        removeFocus={handleRemoveFocus}
-        handleEdit={handleEdit}
-        focusElementRef={focusElement}
-      />
-    </main>
+        <EditBar
+          activeUi={activeUi}
+          removeFocus={handleRemoveFocus}
+          handleEdit={handleEdit}
+          focusElementRef={focusElement}
+        />
+      </main>
+    </div>
   );
 }
 

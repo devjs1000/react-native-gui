@@ -25,7 +25,7 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
     });
   };
   return (
-    <div className="bg-gray-50  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
+    <div className="bg-white  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
       <Container
         title={"MARGIN"}
         all={true}
@@ -41,28 +41,28 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
           type="text"
           label="top"
           placeholder="0"
-         defaultValue={styles?.marginTop}
+          defaultValue={styles?.marginTop}
         />
         <Input
           onKeyPress={handleChange("marginBottom")}
           type="text"
           label="bottom"
           placeholder="0"
-         defaultValue={styles?.marginBottom}
+          defaultValue={styles?.marginBottom}
         />
         <Input
           onKeyPress={handleChange("marginLeft")}
           type="text"
           label="left"
           placeholder="0"
-         defaultValue={styles?.marginLeft}
+          defaultValue={styles?.marginLeft}
         />
         <Input
           onKeyPress={handleChange("marginRight")}
           type="text"
           label="right"
           placeholder="0"
-         defaultValue={styles?.marginRight}
+          defaultValue={styles?.marginRight}
         />
       </Container>
       <Container
@@ -80,28 +80,28 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
           type="text"
           label="top"
           placeholder="0"
-         defaultValue={styles?.paddingTop}
+          defaultValue={styles?.paddingTop}
         />
         <Input
           onKeyPress={handleChange("paddingBottom")}
           type="text"
           label="bottom"
           placeholder="0"
-         defaultValue={styles?.paddingBottom}
+          defaultValue={styles?.paddingBottom}
         />
         <Input
           onKeyPress={handleChange("paddingLeft")}
           type="text"
           label="left"
           placeholder="0"
-         defaultValue={styles?.paddingLeft}
+          defaultValue={styles?.paddingLeft}
         />
         <Input
           onKeyPress={handleChange("paddingRight")}
           type="text"
           label="right"
           placeholder="0"
-         defaultValue={styles?.paddingRight}
+          defaultValue={styles?.paddingRight}
         />
       </Container>
       <Container
@@ -114,14 +114,14 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
           type="text"
           label="width"
           placeholder="100%"
-         defaultValue={styles?.width}
+          defaultValue={styles?.width}
         />
         <Input
           onKeyPress={handleChange("height")}
           type="text"
           label="height"
           placeholder="200px"
-         defaultValue={styles?.height}
+          defaultValue={styles?.height}
         />
       </Container>
     </div>

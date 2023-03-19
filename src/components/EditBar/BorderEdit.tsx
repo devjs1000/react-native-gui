@@ -39,7 +39,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
       });
     };
   return (
-    <div className="bg-gray-50  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
+    <div className="bg-white  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
       <Container
         title={"BORDER WIDTH"}
         all={true}
@@ -100,7 +100,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
         <Input
           onChange={handleValueChange("borderTopColor")}
           type="color"
-          label="text"
+          label="top"
           placeholder="14"
           className={"bg-gray-600 border-none"}
           defaultValue={styles?.borderTopColor}
@@ -108,7 +108,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
         <Input
           onChange={handleValueChange("borderBottomColor")}
           type="color"
-          label="text"
+          label="bottom"
           placeholder="14"
           className={"bg-gray-600 border-none"}
           defaultValue={styles?.borderBottomColor}
@@ -116,7 +116,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
         <Input
           onChange={handleValueChange("borderLeftColor")}
           type="color"
-          label="text"
+          label="left"
           placeholder="14"
           className={"bg-gray-600 border-none"}
           defaultValue={styles?.borderLeftColor}
@@ -124,7 +124,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
         <Input
           onChange={handleValueChange("borderRightColor")}
           type="color"
-          label="text"
+          label="right"
           placeholder="14"
           className={"bg-gray-600 border-none"}
           defaultValue={styles?.borderRightColor}

@@ -16,7 +16,7 @@ export const Input = ({
         {label?.toUpperCase()}
       </label>
       <input
-        className={` bg-white px-4 w-full h-[32px] flex-grow-[1] text-gray-900 rounded-md ${className}`}
+        className={` bg-white border-[2px] border-gray-600 px-4 w-full h-[32px] flex-grow-[1] text-gray-900 rounded-md ${className}`}
         id={id}
         placeholder={placeholder}
         {...rest}

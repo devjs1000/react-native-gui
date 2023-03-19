@@ -22,7 +22,7 @@ const TextEdit = ({ handleTextEdit, styles }: TextEditProps) => {
     });
   };
   return (
-    <div className="bg-gray-50  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
+    <div className="bg-white  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
       <Container title={"TEXT"}>
         <Input
           onKeyPress={handleChange("fontSize")}
