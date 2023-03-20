@@ -5,6 +5,6 @@ export const getCreator = (name: string) => {
     case "LayoutCreator":
       return LayoutCreator;
     default:
-      return ({})=>''
+      return LayoutCreator;
   }
 };

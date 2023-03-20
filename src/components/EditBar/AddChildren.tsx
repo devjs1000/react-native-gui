@@ -10,7 +10,7 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
       ...prevChildrens,
       {
         type: "null",
-        id: prevChildrens.length,
+        id: `${prevChildrens.length}`,
         attributes: {
           style: {},
         },
@@ -27,7 +27,7 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
     const value = e.target.value;
     const prevChildrens = childrens || [];
     const newChildrens = prevChildrens.map((child: any) => {
-      if (child.id == i) {
+      if (child.id == `${i}`) {
         child.type = value;
       }
       return child;

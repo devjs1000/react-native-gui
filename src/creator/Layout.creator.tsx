@@ -7,7 +7,7 @@ const LayoutCreator = ({ handlefocus, id, children, ...rest }: LayoutProps) => {
       ref={ref}
       id={id}
       onClick={handlefocus(ref, "Layout Creator")}
-      className="w-full h-[200px] bg-black flex justify-center items-center"
+      className="w-full h-[200px] bg-black flex justify-center items-center p-[10px]"
       {...rest}
     >
       {children}

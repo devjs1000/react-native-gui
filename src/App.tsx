@@ -66,14 +66,21 @@ function App() {
         const attributes = item?.attributes || {};
         const children = attributes?.children || [];
         const attrs = JSON.parse(JSON.stringify(attributes));
-        console.log({children});
+        console.log({ children });
         const el = (
           <Creator
             key={`${index}`}
             id={`${index}`}
             handlefocus={handlefocus}
             {...attrs}
-            children={children.length ? <div>hello</div> : "empty"}
+            children={
+              children.length
+                ? renderUI(children)?.map((Child: any, i: number) => {
+                    console.log({ Child });
+                    return Child;
+                  })
+                : "empty"
+            }
           />
         );
         return el;
