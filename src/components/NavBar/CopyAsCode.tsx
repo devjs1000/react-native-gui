@@ -13,7 +13,8 @@ const CopyAsCode = ({ screenCode }: CopyAsCodeProps) => {
 
   const handleCopy = () => {
     const code = screenCodeToCode(screenCode);
-    navigator.clipboard.writeText(code);
+    const finalCode = `<>${code.join("")}</>`
+    navigator.clipboard.writeText(finalCode);
   };
   return (
     <FaCopy onClick={handleCopy} className="text-gray-600 cursor-pointer hover:text-gray-400 text-xl" />

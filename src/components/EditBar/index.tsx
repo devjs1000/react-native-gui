@@ -11,7 +11,7 @@ const EditBar = ({
   removeFocus,
   activeUi,
 }: EditBarProps) => {
-  const hasFocus = focusElementRef;
+  const hasFocus = focusElementRef && activeUi;
   if (!hasFocus) return null;
   const attributes = activeUi?.attributes || {};
   return (
