@@ -80,6 +80,6 @@ const elementsList = [
   },
   {
     label: "Layout",
-    value: "Layout Creator",
+    value: "LayoutCreator",
   },
 ];

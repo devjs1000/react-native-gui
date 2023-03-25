@@ -5,6 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import TextEdit from "./TextEdit";
 import BorderEdit from "./BorderEdit";
 import AddChildren from "./AddChildren";
+import { ItemType } from "../../types/ui.type";
 const EditBar = ({
   focusElementRef = null,
   handleEdit,
@@ -12,12 +13,12 @@ const EditBar = ({
   activeUi,
 }: EditBarProps) => {
   const hasFocus = focusElementRef && activeUi;
-  if (!hasFocus) return null;
-  const attributes = activeUi?.attributes || {};
+  if (!hasFocus || !activeUi) return null;
+  const attributes = activeUi?.attributes;
   return (
     <aside className="flex-grow-[1] p-2 shadow-xl h-[100vh] bg-white max-w-[300px]">
       <p className="text-white flex justify-between px-4  bg-gray-800 py-2 text-center sticky top-0">
-        {focusElementRef?.current?.name}
+        {focusElementRef?.current?.name} // {focusElementRef?.current?.id}
         <FaTimes
           className={"text-gray-700 bg-gray-100 m-1 rounded-md cursor-pointer "}
           onClick={removeFocus}
@@ -44,5 +45,5 @@ interface EditBarProps {
   focusElementRef?: React.RefObject<any> | null;
   handleEdit: any;
   removeFocus: any;
-  activeUi?: any;
+  activeUi: ItemType | undefined;
 }

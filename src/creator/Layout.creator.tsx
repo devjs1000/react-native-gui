@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 const LayoutCreator = ({ handlefocus, id, children, ...rest }: LayoutProps) => {
   const ref = useRef(null);
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {  
-    const {target, currentTarget} = e;
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { target, currentTarget } = e;
     e.bubbles = false;
-    if(target == currentTarget) {
+    if (target == currentTarget) {
       // console.log(target, currentTarget);
-      const callback=handlefocus(ref, "Layout Creator");
+      const callback = handlefocus(ref, "Layout Creator");
       callback();
-      console.log('setting new focus')
+      // console.log('setting new focus')
       // console.log(ref.current)
     }
   };
@@ -17,7 +17,7 @@ const LayoutCreator = ({ handlefocus, id, children, ...rest }: LayoutProps) => {
       ref={ref}
       id={id}
       onClick={handleClick}
-      className="w-full h-[200px] bg-black flex justify-center items-center p-[40px]"
+      className="w-full h-[200px] border-gray-600 border-[2px] bg-gray-200 flex justify-center items-center p-[40px]"
       {...rest}
     >
       {children}

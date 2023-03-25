@@ -1,31 +1,35 @@
 import React from "react";
 import { getCreator } from "./creator/creator.get";
+import { createId } from "./createId";
 
 export function createRenderer(
-  handlefocus: (ref: React.RefObject<any>, name: string) => () => void) {
-  const renderUI = (ui: any, depth = 0) => {
+  handlefocus: (ref: React.RefObject<any>, name: string) => () => void
+) {
+  const renderUI = (ui: any, depth = 0, prevKey = ``) => {
     return (
-      ui.map((item: any, index: number) => {
-        const Creator: any = getCreator(item.type);
-
+      ui?.map((item: any, index: number) => {
+        const Creator: any = getCreator(item?.type);
         const attributes = item?.attributes || {};
         const children = attributes?.children || [];
         const attrs = JSON.parse(JSON.stringify(attributes));
-        console.log({ children });
+        const id = createId(prevKey, index, depth);
         const el = (
           <Creator
             key={`${index}`}
-            id={`${index}-${depth}`}
+            id={id}
             handlefocus={handlefocus}
             {...attrs}
-            children={children.length
-              ? renderUI(children, depth + 1)?.map(
-                (Child: any, i: number) => {
-                  console.log({ Child });
-                  return Child;
-                }
-              )
-              : "empty"} />
+            children={
+              children.length
+                ? renderUI(children, depth + 1, id)?.map(
+                    (Child: any, i: number) => {
+                      console.log({ Child });
+                      return Child;
+                    }
+                  )
+                : "empty"
+            }
+          />
         );
         return el;
       }) || ""
@@ -33,3 +37,5 @@ export function createRenderer(
   };
   return renderUI;
 }
+
+
