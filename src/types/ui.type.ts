@@ -1,5 +1,5 @@
 export interface AttributesType {
-    style?: object;
+    style?: any;
     children?: any;
     [key: string]: any;
 }

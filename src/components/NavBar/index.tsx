@@ -3,11 +3,11 @@ import CopyAsCode from "./CopyAsCode";
 
 const NavBar = ({ screenCode }: NavBarProps) => {
   return (
-    <nav className="h-[50px] w-full bg-gray-700 flex flex-col">
-      <div className="flex justify-center text-white font-bold">
+    <nav className=" w-full bg-white flex  flex-col justify-center ">
+      <div className="flex justify-center text-gray-700 font-bold">
         REACT NATIVE GUI
       </div>
-      <div className="flex flex-row justify-end  px-4 items-center bg-gray-100 h-[25px] gap-4">
+      <div className="flex flex-row justify-end  px-4 items-center border-t-[1px] border-b-[1px] py-2  bg-white  gap-4">
         <CopyAsCode screenCode={screenCode}  />
       </div>
     </nav>

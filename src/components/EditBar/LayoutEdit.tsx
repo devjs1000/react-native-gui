@@ -25,7 +25,7 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
     });
   };
   return (
-    <div className="bg-white  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
+    <div className="bg-white  text-gray-200 p-2 ">
       <Container
         title={"MARGIN"}
         all={true}

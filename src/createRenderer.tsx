@@ -23,7 +23,6 @@ export function createRenderer(
               children.length
                 ? renderUI(children, depth + 1, id)?.map(
                     (Child: any, i: number) => {
-                      console.log({ Child });
                       return Child;
                     }
                   )

@@ -39,7 +39,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
       });
     };
   return (
-    <div className="bg-white  text-gray-200 p-2 border-t-[2px] border-gray-400 ">
+    <div className="bg-white  text-gray-200 p-2 border-t-[1px] border-gray-200 ">
       <Container
         title={"BORDER WIDTH"}
         all={true}

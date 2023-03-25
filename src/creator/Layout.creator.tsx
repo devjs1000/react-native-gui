@@ -5,11 +5,8 @@ const LayoutCreator = ({ handlefocus, id, children, ...rest }: LayoutProps) => {
     const { target, currentTarget } = e;
     e.bubbles = false;
     if (target == currentTarget) {
-      // console.log(target, currentTarget);
       const callback = handlefocus(ref, "Layout Creator");
       callback();
-      // console.log('setting new focus')
-      // console.log(ref.current)
     }
   };
   return (
@@ -17,7 +14,7 @@ const LayoutCreator = ({ handlefocus, id, children, ...rest }: LayoutProps) => {
       ref={ref}
       id={id}
       onClick={handleClick}
-      className="w-full h-[200px] border-gray-600 border-[2px] bg-gray-200 flex justify-center items-center p-[40px]"
+      className=" m-2  h-[200px] border-gray-400  text-gray-400  border-dashed border-[2px] bg-gray-200 flex justify-center items-center p-[40px] rounded-[10px]"
       {...rest}
     >
       {children}

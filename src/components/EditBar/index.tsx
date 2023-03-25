@@ -17,8 +17,20 @@ const EditBar = ({
   const attributes = activeUi?.attributes;
   return (
     <aside className="flex-grow-[1] p-2 shadow-xl h-[100vh] bg-white max-w-[300px]">
-      <p className="text-white flex justify-between px-4  bg-gray-800 py-2 text-center sticky top-0">
-        {focusElementRef?.current?.name} // {focusElementRef?.current?.id}
+      <p className="text-white flex justify-between px-4  bg-gray-800 py-2 text-center sticky top-0 rounded-md select-none">
+        <div className="whitespace-nowrap p-2  overflow-x-auto">
+          <span className="text-gray-400 px-6 bg-white py-1 rounded-md mx-1">
+            {focusElementRef?.current?.name}
+          </span>
+          <span className="text-gray-400 px-6 bg-white py-1 rounded-md mx-1">
+            {focusElementRef?.current?.id}
+          </span>
+          {activeUi?.attributes?.children?.length > 0 && (
+            <span className="text-white bg-blue-500 rounded-full inline-block h-6 w-6">
+              {activeUi?.attributes?.children?.length}
+            </span>
+          )}
+        </div>
         <FaTimes
           className={"text-gray-700 bg-gray-100 m-1 rounded-md cursor-pointer "}
           onClick={removeFocus}
