@@ -1,33 +1,37 @@
-import React from "react";
+import { useCallback } from "react";
 import LayoutEdit from "./LayoutEdit";
 import ColorEdit from "./ColorEdit";
 import { FaTimes } from "react-icons/fa";
 import TextEdit from "./TextEdit";
 import BorderEdit from "./BorderEdit";
 import AddChildren from "./AddChildren";
-import { ItemType } from "../../types/ui.type";
-const EditBar = ({
-  focusElementRef = null,
-  handleEdit,
-  removeFocus,
-  activeUi,
-}: EditBarProps) => {
-  const hasFocus = focusElementRef && activeUi;
-  if (!hasFocus || !activeUi) return null;
-  const attributes = activeUi?.attributes;
+import { AppState, setActiveElement } from "../../state/app.slice";
+import { useStore } from "../../state/useStore";
+import { useDispatch } from "react-redux";
+
+const EditBar = ({ handleEdit }: EditBarProps) => {
+  const { activeElement, activeUI, hasFocus } = useStore<AppState>("app");
+  const dispatch = useDispatch();
+  const removeFocus = useCallback(() => {
+    dispatch(setActiveElement(null));
+  }, []);
+
+  if (!hasFocus) return null;
+  const attributes = activeUI?.attributes;
+
   return (
     <aside className="flex-grow-[1] p-2 shadow-xl h-[100vh] bg-white max-w-[300px]">
       <p className="text-white flex justify-between px-4  bg-gray-800 py-2 text-center sticky top-0 rounded-md select-none">
         <div className="whitespace-nowrap p-2  overflow-x-auto">
           <span className="text-gray-400 px-6 bg-white py-1 rounded-md mx-1">
-            {focusElementRef?.current?.name}
+            {activeElement?.current?.name}
           </span>
           <span className="text-gray-400 px-6 bg-white py-1 rounded-md mx-1">
-            {focusElementRef?.current?.id}
+            {activeElement?.current?.id}
           </span>
-          {activeUi?.attributes?.children?.length > 0 && (
+          {activeUI?.attributes?.children?.length > 0 && (
             <span className="text-white bg-blue-500 rounded-full inline-block h-6 w-6">
-              {activeUi?.attributes?.children?.length}
+              {activeUI?.attributes?.children?.length}
             </span>
           )}
         </div>
@@ -54,8 +58,6 @@ const EditBar = ({
 export default EditBar;
 
 interface EditBarProps {
-  focusElementRef?: React.RefObject<any> | null;
   handleEdit: any;
-  removeFocus: any;
-  activeUi: ItemType | undefined;
+  // activeUi: ItemType | undefined;
 }

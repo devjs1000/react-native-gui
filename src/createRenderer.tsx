@@ -26,7 +26,7 @@ export function createRenderer(
                       return Child;
                     }
                   )
-                : "empty"
+                : ""
             }
           />
         );
