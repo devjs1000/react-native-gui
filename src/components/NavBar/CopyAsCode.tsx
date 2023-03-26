@@ -4,16 +4,16 @@ const CopyAsCode = ({ screenCode }: CopyAsCodeProps) => {
   const screenCodeToCode = (myScreenCode: any) => {
     return myScreenCode?.map((cd: any) => {
       const renderer = toRender[cd?.type];
-      console.log(renderer, cd.type);
       const children = cd.attributes.children;
-      const attr = cd.attributes;
-      console.log(cd);
+      console.log('attr', cd)
+      const attr=cd.attributes
       // console.log({children,attr})
-      delete attr.children;
-      const code = renderer(cd.type, attr, children);
-      if (code) {
-        return code;
-      }
+      delete attr.children
+      return  renderer({
+        children: children ? screenCodeToCode(children) : [],
+        attributes: attr || {},
+      });
+      
     });
   };
   // TODO - update copy as code

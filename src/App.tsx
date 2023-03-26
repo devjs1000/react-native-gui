@@ -56,8 +56,9 @@ function App() {
   const renderUI = useCallback(createRenderer(handlefocus), []);
   const renderedUI = renderUI(ui);
   console.log("ui", ui);
-  console.log("focus Element", focusElement);
-  console.log("active ui", activeUi);
+  // console.log("focus Element", focusElement);
+  // console.log("active ui", activeUi);
+  
   return (
     <div>
       <NavBar screenCode={ui} />
