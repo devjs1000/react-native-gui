@@ -51,15 +51,13 @@ function App() {
     setFocusElement(null);
   }, []);
 
-  const findActiveUi = useCallback(createUIFinder(focusElement?.current?.id), [
-    focusElement?.current?.id,
-  ]);
+  const findActiveUi = useCallback(createUIFinder(focusElement?.current?.id), [focusElement?.current?.id, ui]);
   const activeUi = findActiveUi(ui);
   const renderUI = useCallback(createRenderer(handlefocus), []);
   const renderedUI = renderUI(ui);
-  // console.log("ui", ui);
-  // console.log("focus Element", focusElement);
-  // console.log("active ui", activeUi);
+  console.log("ui", ui);
+  console.log("focus Element", focusElement);
+  console.log("active ui", activeUi);
   return (
     <div>
       <NavBar screenCode={ui} />
