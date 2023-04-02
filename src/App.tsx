@@ -31,14 +31,24 @@ function App() {
     name,
     value,
     editType = "style",
+    batch = false,
   }: {
     [key: string]: any;
   }) => {
     const id: string = activeElement?.current?.id;
-    const cloneUI=JSON.parse(JSON.stringify(ui));
-    const tempUI: UIType = updateUI(cloneUI, id, name, value, editType);
-    const clonedTempUI = JSON.parse(JSON.stringify(tempUI));
-    dispatch(setUI(clonedTempUI));
+    const cloneUI = JSON.parse(JSON.stringify(ui));
+    console.log({ batch, name });
+    if (batch) {
+      const batchUI: UIType = name.reduce((acc: any, curr: any) => {
+        return updateUI(acc, id, curr, value, editType);
+      }, cloneUI);
+      const clonedBatchUI = JSON.parse(JSON.stringify(batchUI));
+      dispatch(setUI(clonedBatchUI));
+    } else {
+      const tempUI: UIType = updateUI(cloneUI, id, name, value, editType);
+      const clonedTempUI = JSON.parse(JSON.stringify(tempUI));
+      dispatch(setUI(clonedTempUI));
+    }
   };
 
   const findActiveUi = useCallback(createUIFinder(activeElement?.current?.id), [
@@ -51,7 +61,6 @@ function App() {
   useEffect(() => {
     dispatch(setActiveUI(activeUi));
   }, [activeUi]);
-
 
   return (
     <div>

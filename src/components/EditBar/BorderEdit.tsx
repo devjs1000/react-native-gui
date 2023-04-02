@@ -31,11 +31,11 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
         if (key !== "Enter") return;
       }
       const { value } = e.target;
-      names.forEach((name) => {
-        handleBorderEdit({
-          name,
-          value,
-        });
+
+      handleBorderEdit({
+        name: names,
+        value,
+        batch: true,
       });
     };
   return (
@@ -44,10 +44,10 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
         title={"BORDER WIDTH"}
         all={true}
         handleAllChange={handleAllChange([
+          "borderRightWidth",
           "borderTopWidth",
           "borderBottomWidth",
           "borderLeftWidth",
-          "borderRightWidth",
         ])}
       >
         <Input
@@ -227,5 +227,3 @@ interface BorderEditProps {
   handleBorderEdit: any;
   styles: any;
 }
-
-

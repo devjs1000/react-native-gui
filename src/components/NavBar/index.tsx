@@ -2,7 +2,6 @@ import React from "react";
 import CopyAsCode from "./CopyAsCode";
 
 const NavBar = ({ screenCode }: NavBarProps) => {
-  console.log("screenCode", screenCode);
   return (
     <nav className=" w-full bg-white flex  flex-col justify-center ">
       <div className="flex justify-center text-gray-700 font-bold">

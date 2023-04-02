@@ -42,7 +42,7 @@ const TextEdit = ({ handleTextEdit, styles }: TextEditProps) => {
         />
         <Select
           data={fontFamilies}
-          onKeyPress={handleSelect("fontFamily")}
+          onChange={handleSelect("fontFamily")}
           type="text"
           label="font family"
           className={"w-full"}

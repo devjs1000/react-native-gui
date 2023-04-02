@@ -58,6 +58,11 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
 export default EditBar;
 
 interface EditBarProps {
-  handleEdit: any;
+  handleEdit: (args: {
+    name: string;
+    value: any;
+    editType?: "style" | "attribute";
+    batch?: boolean;
+  }) => void;
   // activeUi: ItemType | undefined;
 }

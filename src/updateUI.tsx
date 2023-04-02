@@ -14,7 +14,11 @@ export const updateUI = (
     const newId = createId(prevKey, index, depth);
     if (newId === id) {
       if (editType === "style") {
-        item.attributes.style[name] = value;
+        if (value === "") {
+          delete item.attributes.style[name];
+        } else {
+          item.attributes.style[name] = value;
+        }
       } else if (editType === "attributes") {
         item.attributes[name] = value;
       }

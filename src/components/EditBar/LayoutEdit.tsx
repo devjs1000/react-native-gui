@@ -1,7 +1,8 @@
 import React, { ChangeEvent, ChangeEventHandler } from "react";
 import { Container } from "./Container";
 import { Input } from "./Input";
-
+import { Select } from "./Select";
+import positions from "../../constants/positions";
 const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
   const handleChange = (name: string) => (e: any) => {
     const key = e.key;
@@ -14,16 +15,25 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
   };
   const handleAllChange = (names: string[]) => (e: any) => {
     const key = e.key;
-    console.log("handle all change", key);
     if (key !== "Enter") return;
     const { value } = e.target;
-    names.forEach((name) => {
-      handleLayoutEdit({
-        name,
-        value,
-      });
+
+    handleLayoutEdit({
+      name: names,
+      value,
+      batch: true,
     });
   };
+
+
+  const handleSelect = (name: string) => (e: any) => {
+    const { value } = e.target;
+    handleLayoutEdit({
+      name,
+      value,
+    });
+  };
+
   return (
     <div className="bg-white  text-gray-200 p-2 ">
       <Container
@@ -122,6 +132,50 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
           label="height"
           placeholder="200px"
           defaultValue={styles?.height}
+        />
+      </Container>
+      <Container
+        title={"POSITION"}
+        all={true}
+        handleAllChange={handleAllChange(["top", "left", "right", "bottom"])}
+      >
+        <Select
+          data={positions}
+          label="position"
+          placeholder="static"
+          onChange={handleSelect("position")}
+          type="text"
+          className={"w-full"}
+          value={styles?.position}
+        />
+
+        <Input
+          onKeyPress={handleChange("top")}
+          type="text"
+          label="top"
+          placeholder="0"
+          defaultValue={styles?.top}
+        />
+        <Input
+          onKeyPress={handleChange("bottom")}
+          type="text"
+          label="bottom"
+          placeholder="0"
+          defaultValue={styles?.bottom}
+        />
+        <Input
+          onKeyPress={handleChange("left")}
+          type="text"
+          label="left"
+          placeholder="0"
+          defaultValue={styles?.left}
+        />
+        <Input
+          onKeyPress={handleChange("right")}
+          type="text"
+          label="right"
+          placeholder="0"
+          defaultValue={styles?.right}
         />
       </Container>
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "./Container";
 import { Select } from "./Select";
 import { FaPlus } from "react-icons/fa";
+import _ from "lodash";
 
 const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
   const addChild = () => {
@@ -25,7 +26,7 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
 
   const handleValueChange = (i: number) => (e: any) => {
     const value = e.target.value;
-    const prevChildrens = childrens || [];
+    const prevChildrens = _.cloneDeep(childrens) || [];
     const newChildrens = prevChildrens.map((child: any) => {
       if (child.id == `${i}`) {
         child.type = value;

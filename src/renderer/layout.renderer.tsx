@@ -4,6 +4,15 @@ export const renderLayout = ({
   isWeb = false,
 }: LayoutProps) => {
   const finalVariant = isWeb ? "div" : "View";
+  const multiLevelJoin = (arr: any) => {
+    return arr.map((item: any) => {
+      if (Array.isArray(item)) {
+        return multiLevelJoin(item);
+      }
+      return item;
+    });
+  };
+
   return `<${finalVariant}
     ${
       attributes
@@ -19,7 +28,7 @@ export const renderLayout = ({
         : ""
     }
   >
-    ${children || ""} 
+    ${ Array.isArray(children) ? multiLevelJoin(children).join("") : children || ""}
     </${finalVariant}>`;
 };
 
