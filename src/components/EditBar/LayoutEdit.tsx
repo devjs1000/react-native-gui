@@ -3,6 +3,15 @@ import { Container } from "./Container";
 import { Input } from "./Input";
 import { Select } from "./Select";
 import positions from "../../constants/positions";
+import display from "../../constants/display";
+import {
+  alignContent,
+  alignItems,
+  alignSelf,
+  flexDirections,
+  flexWrap,
+  justifyContent,
+} from "../../constants/flex";
 const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
   const handleChange = (name: string) => (e: any) => {
     const key = e.key;
@@ -24,7 +33,6 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
       batch: true,
     });
   };
-
 
   const handleSelect = (name: string) => (e: any) => {
     const { value } = e.target;
@@ -178,6 +186,108 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
           defaultValue={styles?.right}
         />
       </Container>
+
+      <Select
+        data={display}
+        label="display"
+        placeholder="flex"
+        onChange={handleSelect("display")}
+        type="text"
+        className={"w-full"}
+        value={styles?.display}
+      />
+
+      {(styles?.display === "flex" || !styles.display) && (
+        <Container title={"FLEX"} all={false}>
+          <Input
+            onKeyPress={handleChange("flex")}
+            type="text"
+            label="flex"
+            placeholder="1"
+            defaultValue={styles?.flex}
+          />
+          <Input
+            onKeyPress={handleChange("flexGrow")}
+            type="text"
+            label="flex-grow"
+            placeholder="1"
+            defaultValue={styles?.flexGrow}
+          />
+          <Input
+            onKeyPress={handleChange("flexShrink")}
+            type="text"
+            label="flex-shrink"
+            placeholder="1"
+            defaultValue={styles?.flexShrink}
+          />
+          <Input
+            onKeyPress={handleChange("flexBasis")}
+            type="text"
+            label="flex-basis"
+            placeholder="1"
+            defaultValue={styles?.flexBasis}
+          />
+          <Select
+            data={flexDirections}
+            label="flex-direction"
+            placeholder="row"
+            onChange={handleSelect("flexDirection")}
+            type="text"
+            className={"w-full"}
+            value={styles?.flexDirection}
+          />
+
+          <Select
+            data={justifyContent}
+            label="justify-content"
+            placeholder="flex-start"
+            onChange={handleSelect("justifyContent")}
+            type="text"
+            className={"w-full"}
+            value={styles?.justifyContent}
+          />
+
+          <Select
+            data={alignItems}
+            label="align-items"
+            placeholder="flex-start"
+            onChange={handleSelect("alignItems")}
+            type="text"
+            className={"w-full"}
+            value={styles?.alignItems}
+          />
+
+          <Select
+            data={alignContent}
+            label="align-content"
+            placeholder="flex-start"
+            onChange={handleSelect("alignContent")}
+            type="text"
+            className={"w-full"}
+            value={styles?.alignContent}
+          />
+
+          <Select
+            data={alignSelf}
+            label="align-self"
+            placeholder="flex-start"
+            onChange={handleSelect("alignSelf")}
+            type="text"
+            className={"w-full"}
+            value={styles?.alignSelf}
+          />
+
+          <Select
+            data={flexWrap}
+            label="flex-wrap"
+            placeholder="flex-start"
+            onChange={handleSelect("flexWrap")}
+            type="text"
+            className={"w-full"}
+            value={styles?.flexWrap}
+          />
+        </Container>
+      )}
     </div>
   );
 };
