@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import EditBar from "./components/EditBar";
 import NavBar from "./components/NavBar";
 import { createRenderer } from "./createRenderer";
@@ -14,6 +14,7 @@ import {
 } from "./state/app.slice";
 import { useDispatch } from "react-redux";
 import _ from "lodash";
+import ScreenBar from "./components/ScreenBar";
 
 function App() {
   const { activeElement, ui } = useStore<AppState>("app");
@@ -37,7 +38,7 @@ function App() {
   }) => {
     const id: string = activeElement?.current?.id;
     const cloneUI = JSON.parse(JSON.stringify(ui));
-    console.log({ batch, name });
+
     if (batch) {
       const batchUI: UIType = name.reduce((acc: any, curr: any) => {
         return updateUI(acc, id, curr, value, editType);
@@ -55,6 +56,7 @@ function App() {
     activeElement?.current?.id,
     ui,
   ]);
+
   const activeUi = findActiveUi(ui);
   const renderUI = useCallback(createRenderer(handlefocus), []);
   const renderedUI = renderUI(ui);
@@ -66,7 +68,8 @@ function App() {
     <div>
       <NavBar screenCode={ui} />
       <main className="flex w-screen h-screen  bg-white">
-        <section className="flex-grow-[3] overflow-auto bg-gray-100 ">
+        <ScreenBar />
+        <section className="flex-grow-[3] overflow-auto bg-gray-100 rounded-xl mt-2 ">
           {renderedUI}
         </section>
         <EditBar handleEdit={handleEdit} />

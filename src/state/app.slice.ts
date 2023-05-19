@@ -14,7 +14,8 @@ export interface AppState {
     uiLibrary: string;
     screens?: {
         [key: string]: UIType;
-    }
+    },
+    activeScreen: string | null
 }
 
 export type PlatformType = "web" | "android" | "desktop" | "ios" | "macos" | "win"
@@ -39,7 +40,8 @@ const initialState: AppState = {
     framework: "react-native",
     libraries: [],
     uiLibrary: "none",
-    screens: {}
+    screens: {},
+    activeScreen: null
 };
 
 export const appSlice = createSlice({
@@ -73,11 +75,40 @@ export const appSlice = createSlice({
         },
         setScreens: (state, action) => {
             state.screens = action.payload;
+        },
+        addScreen: (state, action) => {
+            state.screens = {
+                ...state.screens,
+                [action.payload]: state.ui
+            }
+            state.activeScreen = null;
+            state.ui = [
+                {
+                    type: "LayoutCreator",
+                    id: "0",
+                    attributes: {
+                        style: {},
+                    },
+                },
+            ]
+        },
+        selectScreen: (state, action) => {
+            const screen = state?.screens && state.screens[action.payload];
+            if (screen) {
+                state.ui = screen
+                state.activeScreen = action.payload;
+            }
+        },
+        saveUi: (state, action) => {
+            state.screens = {
+                ...state.screens,
+                [action.payload]: state.ui
+            }
         }
     },
 });
 
 
-export const { setActiveElement, setUI, setActiveUI, setFramework, setPlatform, setUILibrary, setHasFrameWork, setLibraries, setScreens } = appSlice.actions;
+export const { setActiveElement, setUI, setActiveUI, setFramework, setPlatform, setUILibrary, setHasFrameWork, setLibraries, setScreens, addScreen, saveUi, selectScreen } = appSlice.actions;
 
 export default appSlice.reducer;
