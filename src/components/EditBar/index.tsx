@@ -20,7 +20,7 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
   const attributes = activeUI?.attributes;
 
   return (
-    <aside className="flex-grow-[1] p-2 shadow-xl h-[100vh] bg-white max-w-[300px]">
+    <aside className="flex-grow-[1] p-2  h-[100vh] bg-white max-w-[300px]">
       <p className="text-white flex justify-between px-4  bg-gray-800 py-2 text-center sticky top-0 rounded-md select-none">
         <div className="whitespace-nowrap p-2  overflow-x-auto">
           <span className="text-gray-400 px-6 bg-white py-1 rounded-md mx-1">

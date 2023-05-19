@@ -25,6 +25,10 @@ const display = [
         label: 'table',
         value: 'table'
     },
+    {
+        label:'none',
+        value: "none"
+    }
 ]
 
 export default display

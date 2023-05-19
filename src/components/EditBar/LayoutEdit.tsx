@@ -12,6 +12,23 @@ import {
   flexWrap,
   justifyContent,
 } from "../../constants/flex";
+
+import {
+  gridAutoColumns,
+  gridAutoFlow,
+  gridAutoRows,
+  gridColumn,
+  gridColumnEnd,
+  gridColumnStart,
+  gridRow,
+  gridRowEnd,
+  gridRowStart,
+  gridTemplateColumns,
+  gridTemplateRows,
+  placeContent,
+  placeItems,
+  placeSelf,
+} from "../../constants/grid";
 const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
   const handleChange = (name: string) => (e: any) => {
     const key = e.key;
@@ -192,37 +209,32 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
         label="display"
         placeholder="flex"
         onChange={handleSelect("display")}
-        type="text"
         className={"w-full"}
         value={styles?.display}
       />
 
-      {(styles?.display === "flex" || !styles.display) && (
+      {styles && (styles?.display === "flex" || !styles.display) && (
         <Container title={"FLEX"} all={false}>
           <Input
             onKeyPress={handleChange("flex")}
-            type="text"
             label="flex"
             placeholder="1"
             defaultValue={styles?.flex}
           />
           <Input
             onKeyPress={handleChange("flexGrow")}
-            type="text"
             label="flex-grow"
             placeholder="1"
             defaultValue={styles?.flexGrow}
           />
           <Input
             onKeyPress={handleChange("flexShrink")}
-            type="text"
             label="flex-shrink"
             placeholder="1"
             defaultValue={styles?.flexShrink}
           />
           <Input
             onKeyPress={handleChange("flexBasis")}
-            type="text"
             label="flex-basis"
             placeholder="1"
             defaultValue={styles?.flexBasis}
@@ -232,7 +244,6 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
             label="flex-direction"
             placeholder="row"
             onChange={handleSelect("flexDirection")}
-            type="text"
             className={"w-full"}
             value={styles?.flexDirection}
           />
@@ -242,7 +253,6 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
             label="justify-content"
             placeholder="flex-start"
             onChange={handleSelect("justifyContent")}
-            type="text"
             className={"w-full"}
             value={styles?.justifyContent}
           />
@@ -252,7 +262,6 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
             label="align-items"
             placeholder="flex-start"
             onChange={handleSelect("alignItems")}
-            type="text"
             className={"w-full"}
             value={styles?.alignItems}
           />
@@ -262,7 +271,6 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
             label="align-content"
             placeholder="flex-start"
             onChange={handleSelect("alignContent")}
-            type="text"
             className={"w-full"}
             value={styles?.alignContent}
           />
@@ -272,7 +280,6 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
             label="align-self"
             placeholder="flex-start"
             onChange={handleSelect("alignSelf")}
-            type="text"
             className={"w-full"}
             value={styles?.alignSelf}
           />
@@ -282,9 +289,39 @@ const LayoutEdit = ({ handleLayoutEdit, styles }: LayoutEditProps) => {
             label="flex-wrap"
             placeholder="flex-start"
             onChange={handleSelect("flexWrap")}
-            type="text"
             className={"w-full"}
             value={styles?.flexWrap}
+          />
+        </Container>
+      )}
+
+      {styles && styles?.display === "grid" && (
+        <Container title={"GRID"} all={false}>
+          <Select
+            data={gridTemplateColumns}
+            label="grid-template-columns"
+            placeholder="1fr 1fr"
+            onChange={handleSelect("gridTemplateColumns")}
+            className={"w-full"}
+            value={styles?.gridTemplateColumns}
+          />
+
+          <Select
+            data={gridTemplateRows}
+            label="grid-template-rows"
+            placeholder="1fr 1fr"
+            onChange={handleSelect("gridTemplateRows")}
+            className={"w-full"}
+            value={styles?.gridTemplateRows}
+          />
+
+          <Select
+            data={placeContent}
+            label="place-content"
+            placeholder="center"
+            onChange={handleSelect("placeContent")}
+            className={"w-full"}
+            value={styles?.placeContent}
           />
         </Container>
       )}
