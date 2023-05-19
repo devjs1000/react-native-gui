@@ -1,7 +1,6 @@
 import { FaCopy } from "react-icons/fa";
 import toRender from "../../renderer/renderer.get";
 const CopyAsCode = ({ screenCode }: CopyAsCodeProps) => {
-  
   const screenCodeToCode = (myScreenCode: any) => {
     return myScreenCode?.map((cd: any) => {
       const renderer = toRender[cd?.type];
@@ -11,7 +10,7 @@ const CopyAsCode = ({ screenCode }: CopyAsCodeProps) => {
       return renderer({
         children: children ? screenCodeToCode(children) : [],
         attributes: attr || {},
-      })
+      });
     });
   };
 
@@ -21,10 +20,13 @@ const CopyAsCode = ({ screenCode }: CopyAsCodeProps) => {
     navigator.clipboard.writeText(finalCode);
   };
   return (
-    <FaCopy
+    <button
       onClick={handleCopy}
-      className="text-gray-600 cursor-pointer hover:text-gray-400 text-xl"
-    />
+      className="bg-white font-md hover:text-gray-800 text-gray-500  py-2 px-4 rounded-xl disabled:bg-gray-400  disabled:text-gray-100 flex items-center gap-2 "
+    >
+      <FaCopy />
+      Copy as code
+    </button>
   );
 };
 
