@@ -12,7 +12,7 @@ export interface AppState {
     framework: FrameworkType;
     libraries: string[];
     uiLibrary: string;
-    screens?: {
+    screens: {
         [key: string]: UIType;
     },
     activeScreen: string | null;
@@ -112,11 +112,45 @@ export const appSlice = createSlice({
         },
         updateName: (state, action) => {
             state.name = action.payload;
+        },
+        updateScreenName: (state, action) => {
+            const { oldName, newName } = action.payload;
+            const screen = state.screens && state.screens[oldName];
+            if (screen) {
+                delete state.screens[oldName];
+                state.screens[newName] = screen;
+                state.activeScreen = newName;
+            }
+
+        },
+        deleteScreen: (state, action) => {
+            const name = action.payload;
+            const screen = state.screens && state.screens[name];
+            if (screen) {
+                delete state.screens[name];
+                state.activeScreen = null
+            }
         }
     },
 });
 
 
-export const { setActiveElement, setUI, setActiveUI, setFramework, setPlatform, setUILibrary, setHasFrameWork, setLibraries, setScreens, addScreen, saveUi, selectScreen,updateName } = appSlice.actions;
+export const {
+    setActiveElement,
+    setUI,
+    setActiveUI,
+    setFramework,
+    setPlatform,
+    setUILibrary,
+    setHasFrameWork,
+    setLibraries,
+    setScreens,
+    addScreen,
+    saveUi,
+    selectScreen,
+    updateName,
+    updateScreenName,
+    deleteScreen
+} = appSlice.actions;
 
 export default appSlice.reducer;

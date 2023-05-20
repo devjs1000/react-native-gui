@@ -1,8 +1,13 @@
 import React, { useRef, useState } from "react";
-import { FaFolderOpen, FaPlus } from "react-icons/fa";
+import { FaFolderOpen, FaPlus, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../state/store";
-import { addScreen, selectScreen } from "../../state/app.slice";
+import {
+  addScreen,
+  deleteScreen,
+  selectScreen,
+  updateScreenName,
+} from "../../state/app.slice";
 
 const ScreenBar = () => {
   const [isOpened, setIsOpened] = useState(false);
@@ -12,17 +17,36 @@ const ScreenBar = () => {
     const screenName = screenRef.current?.value;
     if (screenName?.length) {
       dispatch(addScreen(screenName));
-      //   screenRef?.current && (screenRef.current.value = "");
+      screenRef.current && (screenRef.current.value = "");
+      onClose();
     }
   };
-  const onOpen = () => setIsOpened(true);
+  const onOpen = () => {
+    setIsOpened(true);
+    setTimeout(() => {
+      screenRef.current?.focus();
+    }, 0);
+  };
   const onClose = () => setIsOpened(false);
   const screens: any = useSelector((state: RootState) => state.app.screens);
   const screenKeys = Object.keys(screens);
 
   const _selectScreen = (screenName: string) => () =>
     dispatch(selectScreen(screenName));
+  const handleScreenName =
+    (screenName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newName: string = e.target.value;
+      dispatch(
+        updateScreenName({
+          oldName: screenName,
+          newName: newName,
+        })
+      );
+    };
 
+  const handleDeleteScreen = (screenName: string) => () => {
+    dispatch(deleteScreen(screenName));
+  };
   return (
     <aside className="flex-grow-[1] p-2 h-[100vh] bg-white max-w-[300px]">
       <div className="flex flex-col gap-2  w-full p-3 bg-gray-200 rounded-lg overflow-auto h-[100%]">
@@ -32,14 +56,27 @@ const ScreenBar = () => {
         >
           <FaPlus /> Add Screen
         </button>
-        {screenKeys.map((screen: string) => (
+        {screenKeys.map((screen: string, i) => (
           <button
-            key={screen}
+            key={i}
             className="bg-white w-full flex px-4 py-2 justify-start text-gray-500 items-center rounded-xl hover:text-gray-700 gap-4 "
             onClick={_selectScreen(screen)}
           >
             <FaFolderOpen />
-            {screen}
+
+            <input
+              type="text"
+              value={screen}
+              disabled={true}
+              defaultValue={screen}
+              onChange={handleScreenName(screen)}
+              className="w-[150px] inline"
+            />
+            {screen !== "untitled" && (
+              <button onClick={handleDeleteScreen(screen)}>
+                <FaTrash className="text-red-500" />
+              </button>
+            )}
           </button>
         ))}
       </div>
