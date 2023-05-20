@@ -17,6 +17,7 @@ import _ from "lodash";
 import ScreenBar from "./components/ScreenBar";
 
 function App() {
+  
   const { activeElement, ui } = useStore<AppState>("app");
   const dispatch = useDispatch();
 

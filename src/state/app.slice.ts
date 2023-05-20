@@ -15,7 +15,8 @@ export interface AppState {
     screens?: {
         [key: string]: UIType;
     },
-    activeScreen: string | null
+    activeScreen: string | null;
+    name: string;
 }
 
 export type PlatformType = "web" | "android" | "desktop" | "ios" | "macos" | "win"
@@ -45,7 +46,8 @@ const initialState: AppState = {
     screens: {
         untitled: initialUI
     },
-    activeScreen: null
+    activeScreen: null,
+    name: 'untitled'
 };
 
 export const appSlice = createSlice({
@@ -107,11 +109,14 @@ export const appSlice = createSlice({
                 ...state.screens,
                 [action.payload]: state.ui
             }
+        },
+        updateName: (state, action) => {
+            state.name = action.payload;
         }
     },
 });
 
 
-export const { setActiveElement, setUI, setActiveUI, setFramework, setPlatform, setUILibrary, setHasFrameWork, setLibraries, setScreens, addScreen, saveUi, selectScreen } = appSlice.actions;
+export const { setActiveElement, setUI, setActiveUI, setFramework, setPlatform, setUILibrary, setHasFrameWork, setLibraries, setScreens, addScreen, saveUi, selectScreen,updateName } = appSlice.actions;
 
 export default appSlice.reducer;

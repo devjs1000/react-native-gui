@@ -1,8 +1,26 @@
 import React from "react";
 import { FaDownload } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { createFinalCode } from "./helpers/screenCodeToCode";
+import { CodeFileType, downloadFiles } from "./helpers/downloadFiles";
 
 const DownloadCode = () => {
-  const handleDownload = () => {};
+  const screens = useSelector((state: RootState) => state.app.screens);
+  const files: Array<CodeFileType> = [];
+  const name=useSelector((state:RootState)=>state.app.name)
+  for (let key in screens) {
+    if (key == "untitled") continue;
+    const screen = screens[key];
+    const code = createFinalCode(screen);
+    files.push({
+      name: key,
+      code,
+    });
+  }
+  const handleDownload = () => {
+    downloadFiles(files, name);
+  };
   return (
     <button
       onClick={handleDownload}
