@@ -22,25 +22,29 @@ export type PlatformType = "web" | "android" | "desktop" | "ios" | "macos" | "wi
 export type FrameworkType = "react" | "react-native" | "flutter" | "vue" | "angular" | "svelte" | "none"
 export type UILibrary = "material-ui" | "react-native-paper" | 'native-base' | 'react-native-elements' | 'react-native-ui-kitten' | 'chakra-ui' | 'tailwind-css' | 'bootstrap' | 'semantic-ui' | 'ant-design' | 'none'
 
+let initialUI: UIType = [
+    {
+        type: "LayoutCreator",
+        id: "0",
+        attributes: {
+            style: {},
+        },
+    },
+]
+
 const initialState: AppState = {
     activeElement: null,
     hasFocus: false,
-    ui: [
-        {
-            type: "LayoutCreator",
-            id: "0",
-            attributes: {
-                style: {},
-            },
-        },
-    ],
+    ui: initialUI,
     activeUI: null,
     platform: "android",
     hasFrameWork: false,
     framework: "react-native",
     libraries: [],
     uiLibrary: "none",
-    screens: {},
+    screens: {
+        untitled: initialUI
+    },
     activeScreen: null
 };
 
@@ -82,18 +86,17 @@ export const appSlice = createSlice({
                 [action.payload]: state.ui
             }
             state.activeScreen = null;
-            state.ui = [
-                {
-                    type: "LayoutCreator",
-                    id: "0",
-                    attributes: {
-                        style: {},
-                    },
-                },
-            ]
+            state.ui = initialUI;
         },
         selectScreen: (state, action) => {
             const screen = state?.screens && state.screens[action.payload];
+            const ui = state.ui;
+            if (ui) {
+                state.screens = {
+                    ...state.screens,
+                    [state.activeScreen || 'untitled']: ui
+                }
+            }
             if (screen) {
                 state.ui = screen
                 state.activeScreen = action.payload;
