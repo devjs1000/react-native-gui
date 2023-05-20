@@ -1,32 +1,40 @@
 import React, { useId } from "react";
 
 export const Select = ({
-  label, placeholder, className, data, ...rest
+  label,
+  placeholder,
+  className,
+  data,
+  ...rest
 }: SelectProps) => {
   const id = useId();
   return (
-    <div className="flex flex-col mb-2 bg-red-600 relative overflow-clip rounded-md">
+    <div className="flex gap-x-4  my-2 p-1 rounded-md overflow-clip border-[1px] justify-between items-center">
       <label
-        className="select-none py-2 absolute right-0 px-4 h-[38px] flex items-center w-[150px] bg-gray-600"
+        className="select-none text-xs  px-4 h-[32px]  flex items-center justify-start  whitespace-nowrap min-w-[130px]  bg-white text-gray-600 rounded-md"
         htmlFor={id}
       >
         {label?.toUpperCase()}
       </label>
       <select
-        className={`border-[2px] border-gray-600 p-2 w-full flex-grow-[1] h-[40px] text-gray-900 rounded-md  ${className}`}
+        className={`px-2  w-full bg-gray-100 flex-grow-[1] text-xs  py-1 text-gray-500 rounded-md  ${className}`}
         id={id}
         placeholder={placeholder}
         {...rest}
       >
-        {data.map((val: any, key:number) => {
-          return <option value={val?.value} key={key} >{val?.label}</option>;
+        {data.map((val: any, key: number) => {
+          return (
+            <option value={val?.value} key={key}>
+              {val?.label}
+            </option>
+          );
         })}
       </select>
     </div>
   );
 };
 interface SelectProps {
-  data: { label: string; value: string; }[];
+  data: { label: string; value: string }[];
   label: string;
   placeholder: string;
   [key: string]: any;

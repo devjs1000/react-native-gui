@@ -20,27 +20,26 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
   const attributes = activeUI?.attributes;
 
   return (
-    <aside className="flex-grow-[1] p-2  h-[100vh] bg-white max-w-[300px]">
-      <p className="text-white flex justify-between px-4  bg-gray-800 py-2 text-center sticky top-0 rounded-md select-none">
-        <div className="whitespace-nowrap p-2  overflow-x-auto">
-          <span className="text-gray-400 px-6 bg-white py-1 rounded-md mx-1">
-            {activeElement?.current?.name}
-          </span>
-          <span className="text-gray-400 px-6 bg-white py-1 rounded-md mx-1">
-            {activeElement?.current?.id}
-          </span>
-          {activeUI?.attributes?.children?.length > 0 && (
-            <span className="text-white bg-blue-500 rounded-full inline-block h-6 w-6">
-              {activeUI?.attributes?.children?.length}
-            </span>
-          )}
-        </div>
+    <aside className="flex-grow-1 bg-white  h-full  max-w-[300px]">
+      <div className=" flex items-center justify-between px-6 border-b-2 pb-2 border-gray-200">
+        <p className="text-gray-400  bg-white py-1 rounded-md mx-1">
+          {activeElement?.current?.name}
+        </p>
+        <p className="text-gray-400  bg-white py-1 rounded-md mx-1">
+          {activeElement?.current?.id}
+        </p>
+        {activeUI?.attributes?.children?.length > 0 && (
+          <p className="text-white bg-blue-500 rounded-full  h-6 w-6 flex items-center justify-center">
+            {activeUI?.attributes?.children?.length}
+          </p>
+        )}
         <FaTimes
           className={"text-gray-700 bg-gray-100 m-1 rounded-md cursor-pointer "}
           onClick={removeFocus}
         />
-      </p>
-      <div className=" h-full overflow-auto">
+      </div>
+
+      <div className=" h-full bg-gray-500 overflow-auto pb-[50px]">
         <LayoutEdit styles={attributes?.style} handleLayoutEdit={handleEdit} />
         <ColorEdit styles={attributes?.style} handleColorEdit={handleEdit} />
         <TextEdit styles={attributes?.style} handleTextEdit={handleEdit} />

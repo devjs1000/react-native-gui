@@ -1,5 +1,9 @@
 export const borderStyles = [
   {
+    value: "none",
+    label: "none",
+  },
+  {
     value: "solid",
     label: "solid",
   },
@@ -31,10 +35,7 @@ export const borderStyles = [
     value: "outset",
     label: "outset",
   },
-  {
-    value: "none",
-    label: "none",
-  },
+ 
   {
     value: "hidden",
     label: "hidden",

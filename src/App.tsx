@@ -66,7 +66,7 @@ function App() {
   }, [activeUi]);
 
   return (
-    <div>
+    <div className="flex flex-col h-screen w-screen bg-gray-100 overflow-clip">
       <NavBar screenCode={ui} />
       <main className="flex w-screen h-screen  bg-white">
         <ScreenBar />

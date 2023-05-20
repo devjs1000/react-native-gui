@@ -12,26 +12,26 @@ export const Container = ({
   const [open, setOpen] = React.useState<boolean>(false);
   const toggle = () => setOpen(!open);
   return (
-    <div className="bg-white py-[2px] rounded-md my-1 select-none ">
+    <div className="bg-gray-100 py-1  rounded-md my-1 select-none ">
       <h1 className="text-md my-2  text-gray-700 gap-2  cursor-pointer flex justify-between items-center px-4">
-        <div className="w-[150px]">{title}</div>
+        <div className="w-[150px] text-xs">{title}</div>
         {all && (
           <>
             {elType == "input" && (
               <input
-              placeholder="All"
-                className=" border-[1px] border-gray-400 px-2 max-w-[80px] rounded-md text-gray-400"
+                placeholder="All"
+                className=" border-[1px] text-xs py-1 border-gray-400 px-2 max-w-[80px] rounded-md text-gray-400"
                 onKeyPress={handleAllChange}
               />
             )}
             {elType == "select" && (
               <select
-                className=" border-[1px] border-gray-400 px-2 max-w-[80px] rounded-md text-gray-400"
+                className=" border-[1px] border-gray-400 px-2 max-w-[80px] rounded-md text-gray-400 text-xs py-1"
                 onChange={handleAllChange}
               >
                 {data?.map((el, i) => {
                   return (
-                    <option key={i} value={el.value}>
+                    <option key={i} value={el.value} className="text-xs">
                       {el.label}
                     </option>
                   );
