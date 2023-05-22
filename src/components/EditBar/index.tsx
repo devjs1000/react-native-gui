@@ -10,7 +10,7 @@ import { useStore } from "../../state/useStore";
 import { useDispatch } from "react-redux";
 
 const EditBar = ({ handleEdit }: EditBarProps) => {
-  const { activeElement, activeUI, hasFocus } = useStore<AppState>("app");
+  const { activeElement, activeUI, hasFocus,activeElementType } = useStore<AppState>("app");
   const dispatch = useDispatch();
   const removeFocus = useCallback(() => {
     dispatch(setActiveElement(null));
@@ -23,10 +23,10 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
     <aside className="flex-grow-1 bg-white  h-full  max-w-[300px]">
       <div className=" flex items-center justify-between px-6 border-b-2 pb-2 border-gray-200">
         <p className="text-gray-400  bg-white py-1 rounded-md mx-1">
-          {activeElement?.current?.name}
+          {activeElementType}
         </p>
         <p className="text-gray-400  bg-white py-1 rounded-md mx-1">
-          {activeElement?.current?.id}
+          {activeElement}
         </p>
         {activeUI?.attributes?.children?.length > 0 && (
           <p className="text-white bg-blue-500 rounded-full  h-6 w-6 flex items-center justify-center">
