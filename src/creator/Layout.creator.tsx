@@ -5,11 +5,12 @@ const LayoutCreator = ({ handlefocus, id, children, ...rest }: LayoutProps) => {
     const { target, currentTarget } = e;
     e.bubbles = false;
     if (target == currentTarget) {
-      const callback = handlefocus(ref, "Layout Creator");
+      const el: any = ref.current;
+      const callback = handlefocus(el.id, "Layout Creator");
       callback();
     }
   };
- 
+
   return (
     <div
       ref={ref}

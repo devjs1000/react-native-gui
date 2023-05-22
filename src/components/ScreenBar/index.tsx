@@ -8,6 +8,7 @@ import {
   selectScreen,
   updateScreenName,
 } from "../../state/app.slice";
+import fileIcons from "../../constants/fileIcon";
 
 const ScreenBar = () => {
   const [isOpened, setIsOpened] = useState(false);
@@ -56,29 +57,32 @@ const ScreenBar = () => {
         >
           <FaPlus /> Add Screen
         </button>
-        {screenKeys.map((screen: string, i) => (
-          <button
-            key={i}
-            className="bg-white w-full flex px-4 py-2 justify-start text-gray-500 items-center rounded-xl hover:text-gray-700 gap-4 "
-            onClick={_selectScreen(screen)}
-          >
-            <FaFolderOpen />
-
-            <input
-              type="text"
-              value={screen}
-              disabled={true}
-              defaultValue={screen}
-              onChange={handleScreenName(screen)}
-              className="w-[150px] inline"
+        {screenKeys.map((screen: string, i) => {
+          const ext: string = screen.split(".").pop() || "";
+          const iconObj = fileIcons[ext] || fileIcons["default"];
+          const icon = (
+            <iconObj.component
+              style={{
+                color: iconObj.color,
+              }}
             />
-            {screen !== "untitled" && (
-              <button onClick={handleDeleteScreen(screen)}>
-                <FaTrash className="text-red-500" />
-              </button>
-            )}
-          </button>
-        ))}
+          );
+          return (
+            <div
+              key={i}
+              className="bg-white w-full flex px-4 py-2 justify-start text-gray-500 items-center rounded-xl hover:text-gray-700 gap-4 "
+              onClick={_selectScreen(screen)}
+            >
+              {icon}
+              <span className="w-[150px] inline">{screen}</span>
+              {screen !== "untitled" && (
+                <button onClick={handleDeleteScreen(screen)}>
+                  <FaTrash className="text-red-500" />
+                </button>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <dialog

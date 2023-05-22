@@ -17,14 +17,18 @@ import _ from "lodash";
 import ScreenBar from "./components/ScreenBar";
 
 function App() {
-  
   const { activeElement, ui } = useStore<AppState>("app");
+  const id = activeElement || "";
   const dispatch = useDispatch();
 
   const handlefocus = useCallback(
-    (ref: React.RefObject<any>, name: string) => () => {
-      ref.current.name = name;
-      dispatch(setActiveElement(ref));
+    (id: string, name: string) => () => {
+      dispatch(setActiveElement({ id, name }));
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.focus();
+      }
     },
     []
   );
@@ -34,29 +38,26 @@ function App() {
     value,
     editType = "style",
     batch = false,
-  }: {
-    [key: string]: any;
-  }) => {
-    const id: string = activeElement?.current?.id;
-    const cloneUI = JSON.parse(JSON.stringify(ui));
+  }: HandleEditType) => {
 
-    if (batch) {
-      const batchUI: UIType = name.reduce((acc: any, curr: any) => {
+    console.log("handleEdit", name, value, editType, batch);
+    const cloneUI = JSON.parse(JSON.stringify(ui));
+    if (batch && Array.isArray(name)) {
+      const batchUI: UIType = name?.reduce?.((acc: any, curr: any) => {
+        console.log('id', id)
         return updateUI(acc, id, curr, value, editType);
       }, cloneUI);
+      console.log("batchUI", batchUI);
       const clonedBatchUI = JSON.parse(JSON.stringify(batchUI));
       dispatch(setUI(clonedBatchUI));
-    } else {
+    } else if (typeof name === "string") {
       const tempUI: UIType = updateUI(cloneUI, id, name, value, editType);
       const clonedTempUI = JSON.parse(JSON.stringify(tempUI));
       dispatch(setUI(clonedTempUI));
     }
   };
 
-  const findActiveUi = useCallback(createUIFinder(activeElement?.current?.id), [
-    activeElement?.current?.id,
-    ui,
-  ]);
+  const findActiveUi = useCallback(createUIFinder(id), [id, ui]);
 
   const activeUi = findActiveUi(ui);
   const renderUI = useCallback(createRenderer(handlefocus), []);
@@ -64,7 +65,8 @@ function App() {
   useEffect(() => {
     dispatch(setActiveUI(activeUi));
   }, [activeUi]);
-
+ 
+  console.log(id)
   return (
     <div className="flex flex-col h-screen w-screen bg-gray-100 overflow-clip">
       <NavBar screenCode={ui} />
@@ -80,3 +82,10 @@ function App() {
 }
 
 export default App;
+
+interface HandleEditType {
+  name: string | string[];
+  value: string;
+  editType?: string;
+  batch?: boolean;
+}

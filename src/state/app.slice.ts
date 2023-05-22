@@ -3,7 +3,8 @@ import { ItemType, UIType } from '../types/ui.type';
 import React
     from 'react';
 export interface AppState {
-    activeElement: React.RefObject<any> | null;
+    activeElement: string | null;
+    activeElementType: string | null;
     hasFocus: boolean;
     ui: UIType;
     activeUI: ItemType | null;
@@ -47,7 +48,8 @@ const initialState: AppState = {
         untitled: initialUI
     },
     activeScreen: null,
-    name: 'untitled'
+    name: 'untitled',
+    activeElementType: null
 };
 
 export const appSlice = createSlice({
@@ -55,8 +57,14 @@ export const appSlice = createSlice({
     initialState,
     reducers: {
         setActiveElement: (state, action) => {
-            state.activeElement = action.payload;
-            state.hasFocus = !!action.payload;
+            const payload = action.payload;
+            if (payload.name) {
+                state.activeElementType = payload.name;
+            }
+            if (payload.id) {
+                state.activeElement = payload.id
+                state.hasFocus = !!action.payload;
+            }
         },
         setUI: (state, action) => {
             state.ui = action.payload;

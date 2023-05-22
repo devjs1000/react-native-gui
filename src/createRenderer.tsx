@@ -3,7 +3,7 @@ import { getCreator } from "./creator/creator.get";
 import { createId } from "./createId";
 
 export function createRenderer(
-  handlefocus: (ref: React.RefObject<any>, name: string) => () => void
+  handlefocus: (id: string, name: string) => () => void
 ) {
   const renderUI = (ui: any, depth = 0, prevKey = ``) => {
     return (
@@ -36,5 +36,3 @@ export function createRenderer(
   };
   return renderUI;
 }
-
-

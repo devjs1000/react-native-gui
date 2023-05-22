@@ -17,6 +17,7 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
         },
       },
     ];
+    
     handleAddChildren({
       name: "children",
       value: newChildrens,
