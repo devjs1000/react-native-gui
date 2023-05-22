@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./Container";
 import { Select } from "./Select";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTrash } from "react-icons/fa";
 import _ from "lodash";
 
 const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
@@ -17,7 +17,7 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
         },
       },
     ];
-    
+
     handleAddChildren({
       name: "children",
       value: newChildrens,
@@ -42,19 +42,38 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
     });
   };
 
+  const handleRemoveChild = (i: number) => () => {
+    const prevChildrens = _.cloneDeep(childrens) || [];
+    const newChildrens = prevChildrens.filter((child: any) => {
+      return child.id != `${i}`;
+    });
+
+    handleAddChildren({
+      name: "children",
+      value: newChildrens,
+      editType: "attributes",
+    });
+  };
+
   return (
     <div className="bg-white  text-gray-200 p-2 border-t-[1px] border-gray-200 ">
       <Container title={"CHILDREN"}>
         {childrens?.map((child: React.ReactElement, i: number) => {
           return (
-            <Select
-              key={i}
-              value={child.type}
-              data={elementsList}
-              label={"Elements"}
-              placeholder={"Elements"}
-              onChange={handleValueChange(i)}
-            />
+            <div key={i} className="flex items-center justify-between">
+              <Select
+                key={i}
+                value={child.type}
+                data={elementsList}
+                label={"Elements"}
+                placeholder={"Elements"}
+                onChange={handleValueChange(i)}
+              />
+              <FaTrash
+                onClick={handleRemoveChild(i)}
+                className="cursor-pointer text-red-500"
+              />
+            </div>
           );
         })}
         <button
