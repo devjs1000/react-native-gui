@@ -10,7 +10,6 @@ export const updateUI = (
   depth = 0,
   prevKey = ``
 ): UIType => {
-  console.log("updateUI", ui, id, name, value, editType, depth, prevKey);
   return ui.map((item: any, index: number) => {
     const newId = createId(prevKey, index, depth);
     if (newId === id) {

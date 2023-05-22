@@ -40,14 +40,11 @@ function App() {
     batch = false,
   }: HandleEditType) => {
 
-    console.log("handleEdit", name, value, editType, batch);
     const cloneUI = JSON.parse(JSON.stringify(ui));
     if (batch && Array.isArray(name)) {
       const batchUI: UIType = name?.reduce?.((acc: any, curr: any) => {
-        console.log('id', id)
         return updateUI(acc, id, curr, value, editType);
       }, cloneUI);
-      console.log("batchUI", batchUI);
       const clonedBatchUI = JSON.parse(JSON.stringify(batchUI));
       dispatch(setUI(clonedBatchUI));
     } else if (typeof name === "string") {
@@ -66,7 +63,6 @@ function App() {
     dispatch(setActiveUI(activeUi));
   }, [activeUi]);
  
-  console.log(id)
   return (
     <div className="flex flex-col h-screen w-screen bg-gray-100 overflow-clip">
       <NavBar screenCode={ui} />

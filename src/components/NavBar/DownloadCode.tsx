@@ -6,13 +6,13 @@ import { createFinalCode } from "./helpers/screenCodeToCode";
 import { CodeFileType, downloadFiles } from "./helpers/downloadFiles";
 
 const DownloadCode = () => {
-  const screens = useSelector((state: RootState) => state.app.screens);
+  const { screens, framework } = useSelector((state: RootState) => state.app);
   const files: Array<CodeFileType> = [];
-  const name=useSelector((state:RootState)=>state.app.name)
+  const name = useSelector((state: RootState) => state.app.name);
   for (let key in screens) {
     if (key == "untitled") continue;
     const screen = screens[key];
-    const code = createFinalCode(screen);
+    const code = createFinalCode(screen, framework);
     files.push({
       name: key,
       code,

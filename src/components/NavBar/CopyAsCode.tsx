@@ -1,8 +1,11 @@
 import { FaCopy } from "react-icons/fa";
 import { createFinalCode } from "./helpers/screenCodeToCode";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
 const CopyAsCode = ({ screenCode }: CopyAsCodeProps) => {
+  const { framework } = useSelector((state: RootState) => state.app);
   const handleCopy = () => {
-    const finalCode = createFinalCode(screenCode);
+    const finalCode = createFinalCode(screenCode, framework);
     navigator.clipboard.writeText(finalCode);
   };
 

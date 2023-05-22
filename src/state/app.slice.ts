@@ -41,7 +41,7 @@ const initialState: AppState = {
     activeUI: null,
     platform: "android",
     hasFrameWork: false,
-    framework: "react-native",
+    framework: "react",
     libraries: [],
     uiLibrary: "none",
     screens: {

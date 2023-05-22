@@ -1,9 +1,12 @@
+import { FrameworkType } from "../state/app.slice";
+
 export const renderLayout = ({
   children,
   attributes,
-  isWeb = false,
+  framework="react-native",
 }: LayoutProps) => {
-  const finalVariant = isWeb ? "div" : "View";
+  const finalVariant = elementNameMapping[framework] || "div";
+  
   const multiLevelJoin = (arr: any) => {
     return arr.map((item: any) => {
       if (Array.isArray(item)) {
@@ -28,7 +31,11 @@ export const renderLayout = ({
         : ""
     }
   >
-    ${ Array.isArray(children) ? multiLevelJoin(children).join("") : children || ""}
+    ${
+      Array.isArray(children)
+        ? multiLevelJoin(children).join("")
+        : children || ""
+    }
     </${finalVariant}>`;
 };
 
@@ -40,5 +47,10 @@ interface LayoutProps {
     };
     [key: string]: any;
   };
-  isWeb?: boolean;
+  framework?: FrameworkType;
 }
+
+const elementNameMapping: any = {
+  "react-native": "View",
+  react: "div",
+};
