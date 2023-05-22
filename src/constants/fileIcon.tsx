@@ -56,6 +56,18 @@ const fileIcons: FileIconsType = {
   },
 };
 
+export const frameworkIcons: FrameworkIconsType = {
+  react: fileIcons.jsx,
+  "react-native": fileIcons.jsx,
+  default: fileIcons.default,
+};
+
+type FrameworkIconsType = {
+  react: IconObjectType;
+  "react-native": IconObjectType;
+  [key: string]: IconObjectType;
+};
+
 type IconObjectType = {
   component: IconType;
   color: string;
