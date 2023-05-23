@@ -58,12 +58,12 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
   return (
     <div className="bg-white  text-gray-200 p-2 border-t-[1px] border-gray-200 ">
       <Container title={"CHILDREN"}>
-        {childrens?.map((child: React.ReactElement, i: number) => {
+        {childrens?.map?.((child: React.ReactElement, i: number) => {
           return (
             <div key={i} className="flex items-center justify-between">
               <Select
                 key={i}
-                value={child.type}
+                value={child?.type}
                 data={elementsList}
                 label={"Elements"}
                 placeholder={"Elements"}
@@ -102,5 +102,13 @@ const elementsList = [
   {
     label: "Layout",
     value: "LayoutCreator",
+  },
+  {
+    label: "Button",
+    value: "ButtonCreator",
+  },
+  {
+    label: "Text",
+    value: "TextCreator",
   },
 ];

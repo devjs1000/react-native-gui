@@ -2,9 +2,10 @@ export const renderButton = ({
   children,
   attributes,
   variant = "Pressable",
-  isWeb = false,
+  framework = "react-native",
 }: ButtonProps) => {
-  const finalVariant = isWeb ? "Button" : variant;
+  const finalVariant = elementNameMapping[framework] || "div";
+
   return `<${finalVariant}
       ${
         attributes
@@ -26,7 +27,7 @@ export const renderButton = ({
 
 interface ButtonProps {
   children?: any;
-  isWeb?: boolean;
+
   attributes?: {
     style?: {
       [key: string]: string;
@@ -39,4 +40,10 @@ interface ButtonProps {
     | "TouchableHighlight"
     | "TouchableWithoutFeedback"
     | "TouchableNativeFeedback";
+  framework?: "react-native" | "react";
 }
+
+const elementNameMapping: any = {
+  "react-native": "Pressable",
+  react: "button",
+};

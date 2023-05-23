@@ -82,6 +82,6 @@ export default App;
 interface HandleEditType {
   name: string | string[];
   value: string;
-  editType?: string;
+  editType?:'style' | 'attributes'
   batch?: boolean;
 }

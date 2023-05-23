@@ -8,9 +8,11 @@ import AddChildren from "./AddChildren";
 import { AppState, setActiveElement } from "../../state/app.slice";
 import { useStore } from "../../state/useStore";
 import { useDispatch } from "react-redux";
+import DynamicEdit from "./DynamicEdit";
 
 const EditBar = ({ handleEdit }: EditBarProps) => {
-  const { activeElement, activeUI, hasFocus,activeElementType } = useStore<AppState>("app");
+  const { activeElement, activeUI, hasFocus, activeElementType } =
+    useStore<AppState>("app");
   const dispatch = useDispatch();
   const removeFocus = useCallback(() => {
     dispatch(setActiveElement(null));
@@ -18,6 +20,16 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
 
   if (!hasFocus) return null;
   const attributes = activeUI?.attributes;
+
+  const handleAttributeChange = (name: string) => (e: any) => {
+    const { value } = e.target;
+    handleEdit({
+      name,
+      value,
+      editType: "attributes",
+    });
+  };
+
 
   return (
     <aside className="flex-grow-1 bg-white  h-full  max-w-[300px]">
@@ -40,6 +52,7 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
       </div>
 
       <div className=" h-full bg-gray-500 overflow-auto pb-[50px]">
+        <DynamicEdit attributes={attributes}  handleDynamicEdit={handleAttributeChange} />
         <LayoutEdit styles={attributes?.style} handleLayoutEdit={handleEdit} />
         <ColorEdit styles={attributes?.style} handleColorEdit={handleEdit} />
         <TextEdit styles={attributes?.style} handleTextEdit={handleEdit} />
@@ -60,7 +73,7 @@ interface EditBarProps {
   handleEdit: (args: {
     name: string;
     value: any;
-    editType?: "style" | "attribute";
+    editType?: "style" | "attributes";
     batch?: boolean;
   }) => void;
   // activeUi: ItemType | undefined;

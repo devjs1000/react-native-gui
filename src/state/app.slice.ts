@@ -58,10 +58,10 @@ export const appSlice = createSlice({
     reducers: {
         setActiveElement: (state, action) => {
             const payload = action.payload;
-            if (payload.name) {
+            if (payload?.name) {
                 state.activeElementType = payload.name;
             }
-            if (payload.id) {
+            if (payload?.id) {
                 state.activeElement = payload.id
                 state.hasFocus = !!action.payload;
             }

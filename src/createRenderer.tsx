@@ -10,6 +10,8 @@ export function createRenderer(
       ui?.map((item: any, index: number) => {
         const Creator: any = getCreator(item?.type);
         const attributes = item?.attributes || {};
+        if (typeof attributes?.children === "string")
+          return attributes?.children;
         const children = attributes?.children || [];
         const attrs = JSON.parse(JSON.stringify(attributes));
         const id = createId(prevKey, index, depth);
