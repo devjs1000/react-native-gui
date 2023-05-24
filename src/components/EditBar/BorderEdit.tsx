@@ -54,7 +54,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onKeyPress={handleChange("borderTopWidth")}
           type="text"
           label="top"
-          placeholder="14"
+          
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
           defaultValue={styles?.borderTopWidth}
         />
@@ -62,7 +62,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onKeyPress={handleChange("borderBottomWidth")}
           type="text"
           label="bottom"
-          placeholder="14"
+          
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
           defaultValue={styles?.borderBottomWidth}
         />
@@ -70,7 +70,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onKeyPress={handleChange("borderLeftWidth")}
           type="text"
           label="left"
-          placeholder="14"
+          
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
           defaultValue={styles?.borderLeftWidth}
         />
@@ -78,7 +78,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onKeyPress={handleChange("borderRightWidth")}
           type="text"
           label="right"
-          placeholder="14"
+          
           className={"p-0  w-auto border-none bg-transparent h-[50px]"}
           defaultValue={styles?.borderRightWidth}
         />
@@ -101,7 +101,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onChange={handleValueChange("borderTopColor")}
           type="color"
           label="top"
-          placeholder="14"
+          
           className={"bg-gray-600 border-none"}
           defaultValue={styles?.borderTopColor}
         />
@@ -109,7 +109,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onChange={handleValueChange("borderBottomColor")}
           type="color"
           label="bottom"
-          placeholder="14"
+          
           className={"bg-gray-600 border-none"}
           defaultValue={styles?.borderBottomColor}
         />
@@ -117,7 +117,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onChange={handleValueChange("borderLeftColor")}
           type="color"
           label="left"
-          placeholder="14"
+          
           className={"bg-gray-600 border-none"}
           defaultValue={styles?.borderLeftColor}
         />
@@ -125,7 +125,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onChange={handleValueChange("borderRightColor")}
           type="color"
           label="right"
-          placeholder="14"
+          
           className={"bg-gray-600 border-none"}
           defaultValue={styles?.borderRightColor}
         />
@@ -149,28 +149,28 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           data={borderStyles}
           onChange={handleValueChange("borderTopStyle")}
           label={"top"}
-          placeholder={"solid"}
+          
           defaultValue={styles?.borderTopStyle}
         />
         <Select
           data={borderStyles}
           onChange={handleValueChange("borderBottomStyle")}
           label={"bottom"}
-          placeholder={"solid"}
+          
           defaultValue={styles?.borderBottomStyle}
         />
         <Select
           data={borderStyles}
           onChange={handleValueChange("borderLeftStyle")}
           label={"left"}
-          placeholder={"solid"}
+          
           defaultValue={styles?.borderLeftStyle}
         />
         <Select
           data={borderStyles}
           onChange={handleValueChange("borderRightStyle")}
           label={"right"}
-          placeholder={"solid"}
+          
           defaultValue={styles?.borderRightStyle}
         />
       </Container>
@@ -188,7 +188,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onKeyPress={handleChange("borderTopLeftRadius")}
           type="text"
           label="top left"
-          placeholder="14"
+          
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
           defaultValue={styles?.borderTopLeftRadius}
         />
@@ -196,7 +196,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onKeyPress={handleChange("borderTopRightRadius")}
           type="text"
           label="top right"
-          placeholder="14"
+          
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
           defaultValue={styles?.borderTopRightRadius}
         />
@@ -204,7 +204,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onKeyPress={handleChange("borderBottomLeftRadius")}
           type="text"
           label="bottom left"
-          placeholder="14"
+          
           className={"p-0 w-auto border-none bg-transparent h-[50px]"}
           defaultValue={styles?.borderBottomLeftRadius}
         />
@@ -212,7 +212,7 @@ const BorderEdit = ({ handleBorderEdit, styles }: BorderEditProps) => {
           onKeyPress={handleChange("borderBottomRightRadius")}
           type="text"
           label="bottom right"
-          placeholder="14"
+          
           className={"p-0  w-auto border-none bg-transparent h-[50px]"}
           defaultValue={styles?.borderBottomRightRadius}
         />

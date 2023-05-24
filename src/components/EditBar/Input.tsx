@@ -14,7 +14,7 @@ export const Input = ({
         <>
           <input className={`hidden`} id={id} type={type} {...rest} />
           <label
-          htmlFor={id}
+            htmlFor={id}
             className="w-[32px] h-[32px] rounded-md border-[1px] border-gray-200"
             style={{
               backgroundColor: rest.value,
@@ -23,7 +23,7 @@ export const Input = ({
         </>
       ) : (
         <input
-          className={` bg-gray-100 m-1  focus:outline-none  px-4 w-full h-[32px] flex-grow-[1] text-gray-900 rounded-md ${className}`}
+          className={` bg-gray-100 m-1  focus:outline-none  px-4 w-full h-[32px] flex-grow-[2] text-gray-900 rounded-md ${className}`}
           id={id}
           placeholder={placeholder}
           type={type}
@@ -31,7 +31,7 @@ export const Input = ({
         />
       )}
       <label
-        className="select-none text-xs  px-4 h-[32px]  flex items-center justify-start  whitespace-nowrap min-w-[130px]  bg-white text-gray-600 rounded-md"
+        className="select-none text-xs  px-4 h-[32px]  flex items-center justify-start  whitespace-nowrap   bg-white text-gray-600 rounded-md"
         htmlFor={id}
       >
         {label?.toUpperCase()}
@@ -41,6 +41,6 @@ export const Input = ({
 };
 interface InputProps {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   [key: string]: any;
 }

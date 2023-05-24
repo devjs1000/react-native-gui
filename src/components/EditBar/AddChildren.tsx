@@ -68,6 +68,7 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
                 label={"Elements"}
                 placeholder={"Elements"}
                 onChange={handleValueChange(i)}
+                addChildren={true}
                 i={i}
               />
               <FaTrash
@@ -112,4 +113,8 @@ const elementsList = [
     label: "Text",
     value: "TextCreator",
   },
+  {
+    label: "Image",
+    value: "ImageCreator",
+  }
 ];

@@ -1,19 +1,25 @@
 import { Container } from "./Container";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
+import { Input } from "./Input";
 
 const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
-  const activeElementType = useSelector(
+  const activeElementType: any = useSelector(
     (state: RootState) => state?.app?.activeElementType
   );
 
   console.log("activeElementType", activeElementType);
   const isTextCreator = ["Text Creator", "TextCreator"].includes(
-    activeElementType as string
+    activeElementType
   );
+
+  const isImageCreator = ["Image Creator", "ImageCreator"].includes(
+    activeElementType
+  );
+
   return (
     <div className="bg-white  text-gray-200 p-2 border-t-[1px] border-gray-200 ">
-      <Container title={"INNER"}>
+      <Container title={"ATTRIBUTES"}>
         {isTextCreator && (
           <div className="text-gray-600">
             <label htmlFor={"children"} className="text-xs">
@@ -27,14 +33,16 @@ const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
             ></textarea>
           </div>
         )}
-        {/* <Input
-          onChange={handleChange("backgroundColor")}
-          type="color"
-          label="background"
-          placeholder="14"
-          className={"bg-gray-600 border-none"}
-          value={styles?.backgroundColor}
-        /> */}
+        {isImageCreator && (
+          <Input
+            onChange={handleDynamicEdit("src")}
+            label="Src"
+            type="text"
+            placeholder="Image URL"
+            className={"bg-gray-600 border-none"}
+            value={attributes?.src}
+          />
+        )}
       </Container>
     </div>
   );
