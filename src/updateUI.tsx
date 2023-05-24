@@ -10,7 +10,11 @@ export const updateUI = (
   depth = 0,
   prevKey = ``
 ): UIType => {
-  return ui.map((item: any, index: number) => {
+  
+  if (!Array.isArray(ui)) {
+    return ui;
+  }
+  return ui?.map?.((item: any, index: number) => {
     const newId = createId(prevKey, index, depth);
     if (newId === id) {
       if (editType === "style") {

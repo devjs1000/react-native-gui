@@ -11,10 +11,18 @@ export function createRenderer(
         const Creator: any = getCreator(item?.type);
         const attributes = item?.attributes || {};
         if (typeof attributes?.children === "string")
-          return attributes?.children;
+          return (
+            <Creator
+              key={`${index}`}
+              id={createId(prevKey, index, depth)}
+              handlefocus={handlefocus}
+              {...attributes}
+            />
+          );
         const children = attributes?.children || [];
         const attrs = JSON.parse(JSON.stringify(attributes));
         const id = createId(prevKey, index, depth);
+
         const el = (
           <Creator
             key={`${index}`}
@@ -32,6 +40,7 @@ export function createRenderer(
             }
           />
         );
+
         return el;
       }) || ""
     );

@@ -63,6 +63,7 @@ function App() {
     dispatch(setActiveUI(activeUi));
   }, [activeUi]);
  
+
   return (
     <div className="flex flex-col h-screen w-screen bg-gray-100 overflow-clip">
       <NavBar screenCode={ui} />

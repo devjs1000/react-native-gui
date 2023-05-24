@@ -16,7 +16,7 @@ const TextCreator = ({ handlefocus, id, children, ...rest }: TextProps) => {
       ref={ref}
       id={id}
       onClick={handleClick}
-      className="p-2 text-black bg-white border-[1px] border-gray-500 rounded-md border-dashed cursor-pointer"
+      className=" m-2 overflow-auto border-gray-400  text-gray-400  border-dashed border-[2px] bg-white flex justify-center items-center p-[10px] rounded-[10px] select-none cursor-pointer "
       {...rest}
     >
       {children}

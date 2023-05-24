@@ -1,12 +1,11 @@
-import React, { ChangeEvent, ChangeEventHandler } from "react";
 import { Container } from "./Container";
-import { Input } from "./Input";
 import { useSelector } from "react-redux";
-import { AppState } from "../../state/app.slice";
 import { RootState } from "../../state/store";
 
 const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
-  const activeElementType = useSelector((state: RootState) => state?.app?.activeElementType);
+  const activeElementType = useSelector(
+    (state: RootState) => state?.app?.activeElementType
+  );
   const isTextCreator = activeElementType === "Text Creator";
   return (
     <div className="bg-white  text-gray-200 p-2 border-t-[1px] border-gray-200 ">
@@ -20,9 +19,8 @@ const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
               id={"children"}
               onChange={handleDynamicEdit("children")}
               className="bg-white border-2 p-2 border-gray-500 w-full rounded-md border-dashed"
-            >
-              {attributes?.innerText}
-            </textarea>
+              value={attributes?.children}
+            ></textarea>
           </div>
         )}
         {/* <Input
