@@ -2,6 +2,8 @@ import { Container } from "./Container";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import { Input } from "./Input";
+import { Select } from "./Select";
+import { targetAttributes } from "../../constants/attributesList";
 
 const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
   const activeElementType: any = useSelector(
@@ -17,7 +19,18 @@ const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
     activeElementType
   );
 
-  const isInputCreator = ["Input Creator", "InputCreator"].includes(
+  const isInputCreator = [
+    "Input Creator",
+    "InputCreator",
+    "Textarea Creator",
+    "TextareaCreator",
+  ].includes(activeElementType);
+
+  const isSelectCreator = ["Select Creator", "SelectCreator"].includes(
+    activeElementType
+  );
+
+  const isLinkCreator = ["Link Creator", "LinkCreator"].includes(
     activeElementType
   );
 
@@ -54,6 +67,27 @@ const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
               type="text"
               placeholder="Placeholder"
               value={attributes?.placeholder}
+            />
+          </>
+        )}
+
+        {isSelectCreator && <></>}
+
+        {isLinkCreator && (
+          <>
+            <Input
+              onChange={handleDynamicEdit("href")}
+              label="Href"
+              type="text"
+              placeholder="Href"
+              value={attributes?.href}
+            />
+            <Select
+              label="Target"
+              onChange={handleDynamicEdit("target")}
+              placeholder="Target"
+              value={attributes?.target}
+              data={targetAttributes}
             />
           </>
         )}

@@ -28,14 +28,6 @@ export const elementsList = [
     value: "SelectCreator",
   },
   {
-    label: "Checkbox",
-    value: "CheckboxCreator",
-  },
-  {
-    label: "Radio",
-    value: "RadioCreator",
-  },
-  {
     label: "Textarea",
     value: "TextareaCreator",
   },
@@ -43,61 +35,60 @@ export const elementsList = [
     label: "Link",
     value: "LinkCreator",
   },
-  {
-    label: "List",
-    value: "ListCreator",
-  },
-  {
-    label: "ListItem",
-    value: "ListItemCreator",
-  },
-  {
-    label: "Table",
-    value: "TableCreator",
-  },
-  {
-    label: "TableRow",
-    value: "TableRowCreator",
-  },
-  {
-    label: "TableData",
-    value: "TableDataCreator",
-  },
-  {
-    label: "TableHeader",
-    value: "TableHeaderCreator",
-  },
-  {
-    label: "TableBody",
-    value: "TableBodyCreator",
-  },
-  {
-    label: "TableFooter",
-    value: "TableFooterCreator",
-  },
-  {
-    label: "TableCaption",
-    value: "TableCaptionCreator",
-  },
-  {
-    label: "Form",
-    value: "FormCreator",
-  },
-  {
-    label: "Video",
-    value: "VideoCreator",
-  },
-  {
-    label: "Audio",
-    value: "AudioCreator",
-  },
-  {
-    label: "Canvas",
-    value: "CanvasCreator",
-  },
-  {
-    label: "IFrame",
-    value: "IFrameCreator",
-  },
-  
+  // {
+  //   label: "List",
+  //   value: "ListCreator",
+  // },
+  // {
+  //   label: "ListItem",
+  //   value: "ListItemCreator",
+  // },
+  // {
+  //   label: "Table",
+  //   value: "TableCreator",
+  // },
+  // {
+  //   label: "TableRow",
+  //   value: "TableRowCreator",
+  // },
+  // {
+  //   label: "TableData",
+  //   value: "TableDataCreator",
+  // },
+  // {
+  //   label: "TableHeader",
+  //   value: "TableHeaderCreator",
+  // },
+  // {
+  //   label: "TableBody",
+  //   value: "TableBodyCreator",
+  // },
+  // {
+  //   label: "TableFooter",
+  //   value: "TableFooterCreator",
+  // },
+  // {
+  //   label: "TableCaption",
+  //   value: "TableCaptionCreator",
+  // },
+  // {
+  //   label: "Form",
+  //   value: "FormCreator",
+  // },
+  // {
+  //   label: "Video",
+  //   value: "VideoCreator",
+  // },
+  // {
+  //   label: "Audio",
+  //   value: "AudioCreator",
+  // },
+  // {
+  //   label: "Canvas",
+  //   value: "CanvasCreator",
+  // },
+  // {
+  //   label: "IFrame",
+  //   value: "IFrameCreator",
+  // },
 ];
