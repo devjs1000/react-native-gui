@@ -47,7 +47,7 @@ const initialState: AppState = {
     screens: {
         untitled: initialUI
     },
-    activeScreen: null,
+    activeScreen: 'untitled',
     name: 'untitled',
     activeElementType: null
 };
@@ -112,10 +112,10 @@ export const appSlice = createSlice({
                 state.activeScreen = action.payload;
             }
         },
-        saveUi: (state, action) => {
+        saveUi: (state) => {
             state.screens = {
                 ...state.screens,
-                [action.payload]: state.ui
+                [state.activeScreen || 'untitled']: state.ui
             }
         },
         updateName: (state, action) => {
@@ -158,7 +158,7 @@ export const {
     selectScreen,
     updateName,
     updateScreenName,
-    deleteScreen
+    deleteScreen,
 } = appSlice.actions;
 
 export default appSlice.reducer;
