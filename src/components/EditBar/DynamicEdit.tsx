@@ -6,7 +6,11 @@ const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
   const activeElementType = useSelector(
     (state: RootState) => state?.app?.activeElementType
   );
-  const isTextCreator = activeElementType === "Text Creator";
+
+  console.log("activeElementType", activeElementType);
+  const isTextCreator = ["Text Creator", "TextCreator"].includes(
+    activeElementType as string
+  );
   return (
     <div className="bg-white  text-gray-200 p-2 border-t-[1px] border-gray-200 ">
       <Container title={"INNER"}>

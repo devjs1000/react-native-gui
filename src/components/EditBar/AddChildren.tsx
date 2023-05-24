@@ -68,6 +68,7 @@ const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
                 label={"Elements"}
                 placeholder={"Elements"}
                 onChange={handleValueChange(i)}
+                i={i}
               />
               <FaTrash
                 onClick={handleRemoveChild(i)}
