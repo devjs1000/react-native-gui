@@ -17,6 +17,10 @@ const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
     activeElementType
   );
 
+  const isInputCreator = ["Input Creator", "InputCreator"].includes(
+    activeElementType
+  );
+
   return (
     <div className="bg-white  text-gray-200 p-2 border-t-[1px] border-gray-200 ">
       <Container title={"ATTRIBUTES"}>
@@ -39,9 +43,19 @@ const DynamicEdit = ({ handleDynamicEdit, attributes }: DynamicEditProps) => {
             label="Src"
             type="text"
             placeholder="Image URL"
-            className={"bg-gray-600 border-none"}
             value={attributes?.src}
           />
+        )}
+        {isInputCreator && (
+          <>
+            <Input
+              onChange={handleDynamicEdit("placeholder")}
+              label="Placeholder"
+              type="text"
+              placeholder="Placeholder"
+              value={attributes?.placeholder}
+            />
+          </>
         )}
       </Container>
     </div>

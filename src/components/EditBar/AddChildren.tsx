@@ -3,6 +3,7 @@ import { Container } from "./Container";
 import { Select } from "./Select";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import _ from "lodash";
+import { elementsList } from "../../constants/elementsList";
 
 const AddChildren = ({ handleAddChildren, childrens }: AddChildrenProps) => {
   const addChild = () => {
@@ -96,25 +97,4 @@ interface AddChildrenProps {
   childrens: any;
 }
 
-const elementsList = [
-  {
-    label: "None",
-    value: "null",
-  },
-  {
-    label: "Layout",
-    value: "LayoutCreator",
-  },
-  {
-    label: "Button",
-    value: "ButtonCreator",
-  },
-  {
-    label: "Text",
-    value: "TextCreator",
-  },
-  {
-    label: "Image",
-    value: "ImageCreator",
-  }
-];
+
