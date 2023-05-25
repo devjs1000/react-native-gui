@@ -1,12 +1,13 @@
 import { FrameworkType } from "../state/app.slice";
-
+import to from 'to-case'
 export const renderLayout = ({
   children,
   attributes,
-  framework="react-native",
+  framework = "react-native",
+  html = false,
 }: LayoutProps) => {
   const finalVariant = elementNameMapping[framework] || "div";
-  
+
   const multiLevelJoin = (arr: any) => {
     return arr.map((item: any) => {
       if (Array.isArray(item)) {
@@ -22,7 +23,12 @@ export const renderLayout = ({
         ? Object.keys(attributes)
             .map((key) => {
               const val = attributes[key];
-              if (typeof val === "object") {
+              if (html && typeof val === "object") {
+                const attrs = Object.keys(val);
+                return `${key}=${attrs
+                  .map((attr) => `${to.slug(attr)}:${val[attr]}`)
+                  .join(";")}`;
+              } else if (typeof val === "object") {
                 return `${key}={${JSON.stringify(val)}}`;
               }
               return `${key}="${attributes[key]}"`;
@@ -48,6 +54,7 @@ interface LayoutProps {
     [key: string]: any;
   };
   framework?: FrameworkType;
+  html?: boolean;
 }
 
 const elementNameMapping: any = {

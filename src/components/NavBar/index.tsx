@@ -8,6 +8,7 @@ import { updateName } from "../../state/app.slice";
 import { frameworkIcons } from "../../constants/fileIcon";
 import Settings from "./Settings";
 import FullScreen from "./FullScreen";
+import Preview from "./Preview";
 
 const NavBar = ({ screenCode }: NavBarProps) => {
   const { name, framework } = useSelector((state: RootState) => state.app);
@@ -30,9 +31,7 @@ const NavBar = ({ screenCode }: NavBarProps) => {
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-between gap-2 ">
             {icon}
-            <p
-              className="text-xl text-gray-600 font-semibold"
-            >{framework}</p>
+            <p className="text-xl text-gray-600 font-semibold">{framework}</p>
           </div>
 
           <input
@@ -49,6 +48,7 @@ const NavBar = ({ screenCode }: NavBarProps) => {
           <Settings />
         </div>
         <div className="flex flex-row gap-4">
+          <Preview screenCode={JSON.parse(JSON.stringify(screenCode))} />
           <DownloadCode />
           <SaveChanges />
           <FullScreen />

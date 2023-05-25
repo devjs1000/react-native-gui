@@ -3,7 +3,8 @@ import { FrameworkType } from "../../../state/app.slice";
 
 export const screenCodeToCode = (
   myScreenCode: any,
-  framework: FrameworkType
+  framework: FrameworkType,
+  html=false
 ): any => {
   return [...myScreenCode]?.map((cd: any) => {
     const renderer = toRender[cd?.type];
@@ -12,21 +13,27 @@ export const screenCodeToCode = (
     const attr = JSON.parse(JSON.stringify(cd.attributes));
     if (attr?.children) delete attr.children;
     if (typeof children === "string")
-      return renderer({
+      return renderer?.({
         children,
         attributes: attr,
         framework,
+        html: html,
       });
-    return renderer({
+    return renderer?.({
       children: children ? screenCodeToCode(children, framework) : [],
       attributes: attr || {},
       framework,
+      html: html,
     });
   });
 };
 
-export const createFinalCode = (screenCode: any, framework: FrameworkType) => {
-  const code = screenCodeToCode(screenCode, framework);
-  const finalCode = `<>${code.join("")}</>`;
+export const createFinalCode = (screenCode: any, framework: FrameworkType, html=false) => {
+  const code = screenCodeToCode(screenCode, framework, html);
+  const frameworkMap:any={
+    react:'body',
+    'react-native':'',
+  } 
+  const finalCode = `<${frameworkMap[framework]}>${code.join("")}</${frameworkMap[framework]}>`;
   return finalCode;
 };
