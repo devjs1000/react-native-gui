@@ -1,5 +1,8 @@
-export const renderInput = ({ attributes, isWeb = false }: InputProps) => {
-  const finalVariant = isWeb ? "input" : "Input";
+export const renderInput = ({
+  attributes,
+  framework = "react-native",
+}: InputProps) => {
+  const finalVariant = elementNameMapping[framework] || "div";
   return `<${finalVariant}
         ${
           attributes
@@ -25,5 +28,10 @@ interface InputProps {
     placeholder?: string;
     [key: string]: any;
   };
-  isWeb?: boolean;
+  framework?: "react-native" | "react";
 }
+
+const elementNameMapping: any = {
+  "react-native": "Input",
+  react: "input",
+};

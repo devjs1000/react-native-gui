@@ -134,9 +134,13 @@ export const appSlice = createSlice({
         deleteScreen: (state, action) => {
             const name = action.payload;
             const screen = state.screens && state.screens[name];
+            const isActiveScreen = state.activeScreen === name;
             if (screen) {
                 delete state.screens[name];
-                state.activeScreen = null
+                state.activeScreen = 'untitled'
+                if (isActiveScreen) {
+                    state.ui = initialUI;
+                }
             }
         }
     },

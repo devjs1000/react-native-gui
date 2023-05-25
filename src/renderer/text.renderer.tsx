@@ -2,9 +2,9 @@ export const renderText = ({
   children,
   attributes,
   variant,
-  isWeb = false,
+  framework = "react-native",
 }: TextProps) => {
-  const finalVariant = isWeb ? "p" : variant || "Text";
+  const finalVariant = elementNameMapping[framework] || "div";
   return `<${finalVariant}
         ${
           attributes
@@ -33,5 +33,10 @@ interface TextProps {
     [key: string]: any;
   };
   variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
-  isWeb?: boolean;
+  framework?: "react-native" | "react";
 }
+
+const elementNameMapping: any = {
+  "react-native": "Text",
+  react: "p",
+};

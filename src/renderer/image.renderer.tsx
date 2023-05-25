@@ -1,5 +1,8 @@
-export const renderImage = ({ attributes, isWeb = false }: ImageProps) => {
-  const finalVariant = isWeb ? "img" : "Image";
+export const renderImage = ({
+  attributes,
+  framework = "react-native",
+}: ImageProps) => {
+  const finalVariant = elementNameMapping[framework] || "div";
   return `<${finalVariant}
       ${
         attributes
@@ -28,5 +31,10 @@ interface ImageProps {
     src?: string;
     [key: string]: any;
   };
-  isWeb?: boolean;
+  framework?: "react-native" | "react";
 }
+
+const elementNameMapping: any = {
+  "react-native": "Image",
+  react: "img",
+};
