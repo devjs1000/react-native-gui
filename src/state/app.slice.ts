@@ -1,28 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ItemType, UIType } from '../types/ui.type';
-import React
-    from 'react';
-export interface AppState {
-    activeElement: string | null;
-    activeElementType: string | null;
-    hasFocus: boolean;
-    ui: UIType;
-    activeUI: ItemType | null;
-    platform: PlatformType;
-    hasFrameWork: boolean;
-    framework: FrameworkType;
-    libraries: string[];
-    uiLibrary: string;
-    screens: {
-        [key: string]: UIType;
-    },
-    activeScreen: string | null;
-    name: string;
-}
+import React from 'react';
 
-export type PlatformType = "web" | "android" | "desktop" | "ios" | "macos" | "win"
-export type FrameworkType = "react" | "react-native" | "flutter" | "vue" | "angular" | "svelte" | "none"
-export type UILibrary = "material-ui" | "react-native-paper" | 'native-base' | 'react-native-elements' | 'react-native-ui-kitten' | 'chakra-ui' | 'tailwind-css' | 'bootstrap' | 'semantic-ui' | 'ant-design' | 'none'
 
 let initialUI: UIType = [
     {
@@ -49,7 +28,8 @@ const initialState: AppState = {
     },
     activeScreen: 'untitled',
     name: 'untitled',
-    activeElementType: null
+    activeElementType: null,
+    hasPreview: false,
 };
 
 export const appSlice = createSlice({
@@ -147,6 +127,9 @@ export const appSlice = createSlice({
                     state.ui = initialUI;
                 }
             }
+        },
+        togglePreview: (state) => {
+            state.hasPreview = !state.hasPreview;
         }
     },
 });
@@ -168,6 +151,31 @@ export const {
     updateName,
     updateScreenName,
     deleteScreen,
+    togglePreview
 } = appSlice.actions;
 
 export default appSlice.reducer;
+
+
+export interface AppState {
+    activeElement: string | null;
+    activeElementType: string | null;
+    hasFocus: boolean;
+    ui: UIType;
+    activeUI: ItemType | null;
+    platform: PlatformType;
+    hasFrameWork: boolean;
+    framework: FrameworkType;
+    libraries: string[];
+    uiLibrary: string;
+    screens: {
+        [key: string]: UIType;
+    },
+    activeScreen: string | null;
+    name: string;
+    hasPreview: boolean;
+}
+
+export type PlatformType = "web" | "android" | "desktop" | "ios" | "macos" | "win"
+export type FrameworkType = "react" | "react-native" | "flutter" | "vue" | "angular" | "svelte" | "none"
+export type UILibrary = "material-ui" | "react-native-paper" | 'native-base' | 'react-native-elements' | 'react-native-ui-kitten' | 'chakra-ui' | 'tailwind-css' | 'bootstrap' | 'semantic-ui' | 'ant-design' | 'none'

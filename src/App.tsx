@@ -15,9 +15,10 @@ import {
 import { useDispatch } from "react-redux";
 import _ from "lodash";
 import ScreenBar from "./components/ScreenBar";
+import View from "./components/View";
 
 function App() {
-  const { activeElement, ui } = useStore<AppState>("app");
+  const { activeElement, ui, hasPreview } = useStore<AppState>("app");
   const id = activeElement || "";
   const dispatch = useDispatch();
 
@@ -39,7 +40,6 @@ function App() {
     editType = "style",
     batch = false,
   }: HandleEditType) => {
-
     const cloneUI = JSON.parse(JSON.stringify(ui));
     if (batch && Array.isArray(name)) {
       const batchUI: UIType = name?.reduce?.((acc: any, curr: any) => {
@@ -62,17 +62,16 @@ function App() {
   useEffect(() => {
     dispatch(setActiveUI(activeUi));
   }, [activeUi]);
- 
-
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-gray-100 overflow-clip">
+    <div className="flex flex-col h-screen w-screen bg-gray-100 overflow-clip transition-[2s] ">
       <NavBar screenCode={ui} />
       <main className="flex w-screen h-screen  bg-white">
         <ScreenBar />
         <section className="flex-grow-[3] overflow-auto bg-gray-100 rounded-xl mt-2 ">
           {renderedUI}
         </section>
+         <View />
         <EditBar handleEdit={handleEdit} />
       </main>
     </div>
@@ -84,6 +83,6 @@ export default App;
 interface HandleEditType {
   name: string | string[];
   value: string;
-  editType?:'style' | 'attributes'
+  editType?: "style" | "attributes";
   batch?: boolean;
 }

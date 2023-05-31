@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import LayoutEdit from "./LayoutEdit";
 import ColorEdit from "./ColorEdit";
 import { FaTimes } from "react-icons/fa";
@@ -18,6 +18,8 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
     dispatch(setActiveElement(null));
   }, []);
 
+  const [activePanel, setActivePanel] = useState("style");
+
   if (!hasFocus) return null;
   const attributes = activeUI?.attributes;
 
@@ -30,9 +32,8 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
     });
   };
 
-
   return (
-    <aside className="flex-grow-1 bg-white  h-full  max-w-[300px]">
+    <aside className="flex-grow-1 bg-white  h-full   w-[300px]">
       <div className=" flex items-center justify-between px-6 border-b-2 pb-2 border-gray-200">
         <p className="text-gray-400  bg-white py-1 rounded-md mx-1">
           {activeElementType}
@@ -50,17 +51,55 @@ const EditBar = ({ handleEdit }: EditBarProps) => {
           onClick={removeFocus}
         />
       </div>
+      <div className="flex items-center justify-between px-6 border-b-2 pb-2 border-gray-200">
+        <p
+          className={`text-gray-400  bg-white py-1 rounded-md mx-1 cursor-pointer ${
+            activePanel === "style" && "text-gray-700"
+          }`}
+          onClick={() => setActivePanel("style")}
+        >
+          Style
+        </p>
+        <p
+          className={`text-gray-400  bg-white py-1 rounded-md mx-1 cursor-pointer ${
+            activePanel === "attributes" && "text-gray-700"
+          }`}
+          onClick={() => setActivePanel("attributes")}
+        >
+          Attributes
+        </p>
+      </div>
 
-      <div className=" h-full bg-gray-500 overflow-auto pb-[50px]">
-        <DynamicEdit attributes={attributes}  handleDynamicEdit={handleAttributeChange} />
-        <LayoutEdit styles={attributes?.style} handleLayoutEdit={handleEdit} />
-        <ColorEdit styles={attributes?.style} handleColorEdit={handleEdit} />
-        <TextEdit styles={attributes?.style} handleTextEdit={handleEdit} />
-        <BorderEdit styles={attributes?.style} handleBorderEdit={handleEdit} />
-        <AddChildren
-          childrens={attributes?.children}
-          handleAddChildren={handleEdit}
-        />
+      <div className=" h-full bg-white overflow-auto  pb-[50px]">
+        {activePanel === "attributes" && (
+          <>
+            <DynamicEdit
+              attributes={attributes}
+              handleDynamicEdit={handleAttributeChange}
+            />
+            <AddChildren
+              childrens={attributes?.children}
+              handleAddChildren={handleEdit}
+            />
+          </>
+        )}
+        {activePanel == "style" && (
+          <>
+            <LayoutEdit
+              styles={attributes?.style}
+              handleLayoutEdit={handleEdit}
+            />
+            <ColorEdit
+              styles={attributes?.style}
+              handleColorEdit={handleEdit}
+            />
+            <TextEdit styles={attributes?.style} handleTextEdit={handleEdit} />
+            <BorderEdit
+              styles={attributes?.style}
+              handleBorderEdit={handleEdit}
+            />
+          </>
+        )}
         <div className="h-[100px] w-full bg-white" />
       </div>
     </aside>

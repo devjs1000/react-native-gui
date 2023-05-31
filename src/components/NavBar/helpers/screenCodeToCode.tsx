@@ -4,7 +4,7 @@ import { FrameworkType } from "../../../state/app.slice";
 export const screenCodeToCode = (
   myScreenCode: any,
   framework: FrameworkType,
-  html=false
+  html = false
 ): any => {
   return [...myScreenCode]?.map((cd: any) => {
     const renderer = toRender[cd?.type];
@@ -28,12 +28,23 @@ export const screenCodeToCode = (
   });
 };
 
-export const createFinalCode = (screenCode: any, framework: FrameworkType, html=false) => {
+export const createFinalCode = (
+  screenCode: any,
+  framework: FrameworkType,
+  html = false
+) => {
   const code = screenCodeToCode(screenCode, framework, html);
-  const frameworkMap:any={
-    react:'body',
-    'react-native':'',
-  } 
-  const finalCode = `<${frameworkMap[framework]}>${code.join("")}</${frameworkMap[framework]}>`;
-  return finalCode;
+  const frameworkMap: any = {
+    react: "body",
+    "react-native": "",
+  };
+  if (framework == "react") {
+    return `<${frameworkMap[framework]} style="margin:0;padding:0;" >${code.join("")}</${
+      frameworkMap[framework]
+    }>`;
+  } else {
+    return `<${frameworkMap[framework]}>${code.join("")}</${
+      frameworkMap[framework]
+    }>`;
+  }
 };
