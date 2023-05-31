@@ -16,7 +16,7 @@ const LayoutCreator = ({ handlefocus, id, children, ...rest }: LayoutProps) => {
       ref={ref}
       id={id}
       onClick={handleClick}
-      className=" m-2 overflow-auto border-gray-400  text-gray-400  border-dashed border-[2px] bg-gray-200 flex justify-center items-center p-[40px] rounded-[10px]"
+      className="layout-creator"
       {...rest}
     >
       {children}

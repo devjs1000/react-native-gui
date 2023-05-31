@@ -16,7 +16,7 @@ const SelectCreator = ({ handlefocus, id, children, ...rest }: SelectProps) => {
       ref={ref}
       id={id}
       onClick={handleClick}
-      className="p-[40px] rounded-[10px] bg-[#f5f5f5] border-[1px] border-[#e0e0e0]  text-[#757575] font-bold"
+      className="select-creator"
       {...rest}
     >
       {children}

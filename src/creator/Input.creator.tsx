@@ -16,7 +16,7 @@ const InputCreator = ({ handlefocus, id, children, ...rest }: InputProps) => {
       ref={ref}
       id={id}
       onClick={handleClick}
-      className="p-[10px] rounded-[10px] bg-[#f5f5f5] border-[1px] border-[#e0e0e0]  text-[#757575] font-bold"
+      className="input-creator"
       {...rest}
     />
   );

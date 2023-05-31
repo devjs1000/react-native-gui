@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.layout-creator {
+  @apply m-2  border-2 border-gray-600 border-dashed  rounded-lg;
+  min-height: 50px;
+  min-width: 50px;
+  flex-grow: 1;
+}
+
+.image-creator {
+  @apply m-2  border-2 border-gray-600 border-dashed  rounded-lg;
+  min-height: 50px;
+  flex-grow: 1;
+}
+
+.button-creator {
+  @apply m-2  border-2 border-gray-600 border-dashed  rounded-lg bg-gray-200;
+  min-height: 50px;
+  min-width: 50px;
+  flex-grow: 1;
+}
+
+.button-creator:hover {
+  @apply border-solid;
+}
+
+.text-creator {
+  @apply my-2  rounded-lg p-4;
+  background-color: rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+}
+
+.text-creator:hover {
+  @apply border-solid;
+}
+
+.input-creator {
+  @apply m-2  rounded-lg p-2 border-2 border-gray-600 border-dashed;
+  flex-grow: 1;
+}
+
+.input-creator:hover {
+  @apply border-solid;
+}
+
+.input-creator:focus {
+  @apply bg-gray-200;
+}
+
+.textarea-creator {
+  @apply m-2  rounded-lg block p-2 border-2 border-gray-600 border-dashed;
+  flex-grow: 1;
+}
+
+.select-creator {
+  @apply m-2  rounded-lg block p-2 border-2 border-gray-600 border-dashed;
+  min-width: 100px;
+  flex-grow: 1;
+}
+
+.link-creator {
+  @apply m-2  rounded-lg block p-2 border-2 border-gray-600 border-dashed underline;
+  min-width: 100px;
+  flex-grow: 1;
+  content: "fsdf";
+}
+
+.link-creator:hover {
+  @apply border-solid border-blue-500;
+}

@@ -39,6 +39,7 @@ export const Select = ({
       </label>
       <select
         value={value}
+        defaultValue={value}
         className={`px-2  w-full bg-gray-100 flex-grow-[1] text-xs  py-1 text-gray-500 rounded-md  ${className}`}
         id={id}
         placeholder={placeholder}

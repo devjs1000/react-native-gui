@@ -1,5 +1,9 @@
 const display = [
     {
+        label: 'initial',
+        value: 'initial'
+    },
+    {
         label: 'flex',
         value: 'flex'
     },

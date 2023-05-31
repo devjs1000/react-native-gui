@@ -65,6 +65,11 @@ export const appSlice = createSlice({
                 state.activeElement = payload.id
                 state.hasFocus = !!action.payload;
             }
+            if (!payload) {
+                state.activeElement = null;
+                state.hasFocus = false;
+                state.activeElementType = null;
+            }
         },
         setUI: (state, action) => {
             state.ui = action.payload;

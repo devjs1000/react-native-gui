@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import noImage from "../assets/images/no-image.png";
 const ImageCreator = ({ handlefocus, id, children, ...rest }: ImageProps) => {
   const ref = useRef(null);
   const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
@@ -16,7 +17,8 @@ const ImageCreator = ({ handlefocus, id, children, ...rest }: ImageProps) => {
       ref={ref}
       id={id}
       onClick={handleClick}
-      className="p-[40px] rounded-[10px] bg-[#f5f5f5] border-[1px] border-[#e0e0e0]  text-[#757575] font-bold"
+      src={noImage}
+      className="image-creator"
       {...rest}
     />
   );
